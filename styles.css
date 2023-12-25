@@ -14,7 +14,7 @@ body::before {
   bottom: 0;
   left: 0;
   background: url('emblem.png') center center no-repeat fixed;
-  background-size: 50%;
+  background-size: 50vw 50vh;
   opacity: 0.5; /* Set the opacity to 50% */
   z-index: -1; /* Ensure the pseudo-element is rendered below other content */
 }
@@ -29,7 +29,7 @@ body::after {
   background: 
     url('Attempt9.png') top right no-repeat fixed,
     url('Attempt8.png') bottom left no-repeat fixed;
-  background-size: auto, auto;
+  background-size: 30vw 30vh;
   z-index: -2; /* Ensure this background is rendered below the pseudo-element */
 }
 
@@ -40,12 +40,15 @@ body::after {
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
+  margin: 10px; /* Adjust the margin */
+  padding: 20px; /* Adjust the padding */
+  background-color: rgba(255, 255, 240, 0.0);
 }
 
 h1 {
   margin-top: 20px;
   position: absolute;
-  font-size: 80px;
+  font-size: 6vw;
   color: transparent;
   background: linear-gradient(45deg, #ffd700, #ffcc00, #ffd700, #ffcc00);
   background-size: 400% 400%;
@@ -56,30 +59,47 @@ h1 {
   height: 11vh;
 }
 
+@media screen and (min-width: 600px) {
+  h1 {
+    font-size: 4vw;
+  }
+}
+
+@media screen and (min-width: 900px) {
+  h1 {
+    font-size: 3vw;
+  }
+}
+
 .p1-container {
-  margin-top: 60px;
+  margin-top: 5%; /* Adjust the margin relative to the screen height */
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 20vh; /* Set a height to center vertically on the viewport */
+  height: 20%; /* Set a percentage-based height */
 }
 
 .p1 {
-  margin-top: 90px;
-  position: absolute;
-  justify-content: center;
-  font-size: 40px;
+  margin-top: 5%; /* Adjust the margin relative to the screen height */
+  font-size: 4vw; /* Set font size using vw units */
   font-family: 'Lexend', serif; 
-  font-weight: 800
+  font-weight: 800;
   color: Black; 
 }
 
-.red-text {
-  color: red; /* Set text color to red */
+/* You can use media queries for further adjustments at different screen sizes */
+@media screen and (min-width: 600px) {
+  .p1 {
+    font-size: 2.5vw;
+  }
 }
-.green-text {
-  color: green; /* Set text color to red */
+
+@media screen and (min-width: 900px) {
+  .p1 {
+    font-size: 2vw;
+  }
 }
+
 
 .p2-container {
   display: flex;
@@ -89,7 +109,7 @@ h1 {
 }
 
 .p2 {
-  margin-top: 90px;
+  margin-top: 10 vh;
   position: absolute;
   justify-content: center;
   font-size: 3.2vh;
@@ -98,20 +118,18 @@ h1 {
   color: Black; 
 }
 
-.p3-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 5vh; /* Set a height to center vertically on the viewport */
+@media screen and (min-width: 600px) {
+  .p2 {
+    font-size: 2.5vw;
+  }
 }
 
-.p3 {
-  margin-top: 90px;
-  position: absolute;
-  font-size: 1vw;
-  font-family: 'Times New Roman', serif; /* Set font to Times New Roman */
-  color: green; /* Set text color to green */
+@media screen and (min-width: 900px) {
+  .p2 {
+    font-size: 2vw;
+  }
 }
+
 
 @keyframes twinkle {
   0%, 100% {
@@ -127,19 +145,19 @@ h1 {
 
 .button-container {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 50px; /* Adjust the gap between buttons */
+  grid-template-columns: repeat(2, minmax(250px, 1fr));
+  gap: 2vw; /* Adjust the gap between buttons */
   justify-content: center;
   align-items: center;
-  margin-top: 120px; /* Adjust the margin from the top */
+  margin-top: 4.5vh; /* Adjust the margin from the top */
 }
 
 .gold-button,
 .red-button {
-  width: 400px;
-  height: 100px;
-  border-radius: 70px;
-  font-size: 18px;
+  width: 100%;
+  height: 5vw;
+  border-radius: 5vw;
+  font-size: 1vw;
   font-weight: bold;
   color: #000;
   text-align: center;
