@@ -1,0 +1,241 @@
+body {
+  margin: 0;
+  padding: 0;
+  background-color: rgba(255, 255, 240, 0.8); /* Cream background color */
+  position: relative;
+  font-family: 'Arial', sans-serif;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: url('emblem.png') center center no-repeat fixed;
+  background-size: 50%;
+  opacity: 0.5; /* Set the opacity to 50% */
+  z-index: -1; /* Ensure the pseudo-element is rendered below other content */
+}
+
+body::after {
+  content: "";
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: 
+    url('Attempt9.png') top right no-repeat fixed,
+    url('Attempt8.png') bottom left no-repeat fixed;
+  background-size: auto, auto;
+  z-index: -2; /* Ensure this background is rendered below the pseudo-element */
+}
+
+#app {
+  position: relative;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+h1 {
+  margin-top: 20px;
+  position: absolute;
+  font-size: 80px;
+  color: transparent;
+  background: linear-gradient(45deg, #ffd700, #ffcc00, #ffd700, #ffcc00);
+  background-size: 400% 400%;
+  font-family: 'Lobster', sans-serif;
+  animation: sparkle 1.5s infinite linear;
+  -webkit-background-clip: text;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  height: 11vh;
+}
+
+.p1-container {
+  margin-top: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 20vh; /* Set a height to center vertically on the viewport */
+}
+
+.p1 {
+  margin-top: 90px;
+  position: absolute;
+  justify-content: center;
+  font-size: 40px;
+  font-family: 'Lexend', serif; 
+  font-weight: 800
+  color: Black; 
+}
+
+.red-text {
+  color: red; /* Set text color to red */
+}
+.green-text {
+  color: green; /* Set text color to red */
+}
+
+.p2-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 0.5vh;
+}
+
+.p2 {
+  margin-top: 90px;
+  position: absolute;
+  justify-content: center;
+  font-size: 3.2vh;
+  font-family: 'Lexend', serif; 
+  font-weight: 800
+  color: Black; 
+}
+
+.p3-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 5vh; /* Set a height to center vertically on the viewport */
+}
+
+.p3 {
+  margin-top: 90px;
+  position: absolute;
+  font-size: 1vw;
+  font-family: 'Times New Roman', serif; /* Set font to Times New Roman */
+  color: green; /* Set text color to green */
+}
+
+@keyframes twinkle {
+  0%, 100% {
+    opacity: 1;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  50% {
+    opacity: 0.8;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0);
+  }
+}
+
+
+.button-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 50px; /* Adjust the gap between buttons */
+  justify-content: center;
+  align-items: center;
+  margin-top: 120px; /* Adjust the margin from the top */
+}
+
+.gold-button,
+.red-button {
+  width: 400px;
+  height: 100px;
+  border-radius: 70px;
+  font-size: 18px;
+  font-weight: bold;
+  color: #000;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s ease-in-out;
+}
+
+
+.gold-button {
+  background-image: url('gold-background-image.jpg'); 
+  background-size: cover; 
+  color: #fff; /* Set text color to white */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.red-button {
+  background-image: url('red-background-image.jpg'); 
+  background-size: cover; 
+  color: #fff; 
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.gold-button:hover,
+.red-button:hover {
+  opacity: 1;
+  transform: scale(1.5); /* Add a scale effect on hover */
+}
+
+.background-text {
+  position: absolute;
+  font-size: 200px;
+  color: transparent;
+  background: linear-gradient(45deg, #ffd700, #ffcc00, #ffd700, #ffcc00);
+  color: rgba(255, 255, 255, 0.5);
+  background-size: 400% 400%;
+  animation: sparkle 1.5s infinite linear;
+  -webkit-background-clip: text;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  font-family: 'Times New Roman', serif;
+  transform: translate(-50%, -50%); /* Center the text */
+  top: 50%;
+  left: 50%;
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.3); /* Semi-transparent black background */
+  overflow: auto;
+}
+
+.modal-content {
+  position: relative;
+  font-family: 'Lexend', serif; 
+  margin: 10% auto;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 5px;
+  max-width: 600px; /* Adjust the maximum width of the modal */
+  overflow: hidden;
+}
+
+.modal-content::before {
+  content: "";
+  position: absolute; /* Change position to absolute */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: url('emblem.png') center center no-repeat;
+  background-size: 50%; /* Adjust the size of the background image */
+  opacity: 0.5; /* Set the opacity to 50% for the background image */
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+}
+
+.close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.modal-body {
+  text-align: center;
+}
+
+.modal-content img {
+  max-width: 100%; /* Make sure the image doesn't exceed the width of the modal */
+  height: auto;
+}
