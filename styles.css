@@ -14,7 +14,7 @@ body::before {
   bottom: 0;
   left: 0;
   background: url('emblem.png') center center no-repeat fixed;
-  background-size: 50vw 50vh;
+  background-size: 60vw 60vh;
   opacity: 0.5; /* Set the opacity to 50% */
   z-index: -1; /* Ensure the pseudo-element is rendered below other content */
 }
@@ -29,7 +29,7 @@ body::after {
   background: 
     url('Attempt9.png') top right no-repeat fixed,
     url('Attempt8.png') bottom left no-repeat fixed;
-  background-size: 30vw 30vh;
+  background-size: 35vw 35vh;
   z-index: -2; /* Ensure this background is rendered below the pseudo-element */
 }
 
