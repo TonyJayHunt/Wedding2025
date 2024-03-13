@@ -10,12 +10,12 @@
   <div class="background-text"></div>
   <div id="app">  
     <h1>{{ message }}</h1>
-	<div class="p1-container">
-	<p class="p1">Save the date: 13th December 2025</p>  
-	</div>
-  <div class=" p2-container">
-    <p class="p1">Location: The Green House Hotel, Bournemouth, BH1 3AX</P>
-  </div>
+    <div class="p1-container">
+      <p class="p1">Save the date: 13th December 2025</p>        
+    </div>
+    <div class="p2-container">
+    <p class="p2">Location: The Green House Hotel, Bournemouth, BH1 3AX</P>
+    </div>
     <div class="button-container">
 	  <button class="gold-button" @click="openModal('rsvp')">RSVP</button>
       <button class="red-button" @click="openModal('location')">Location Maps & Parking</button>
@@ -38,12 +38,12 @@
 		<img :src="modalContent.image">				
 	  </div>
     </div>		
-  </div>
- 
-  
+  </div>  
   </main>
 
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sergio+Trendy&display=swap">
   <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Alex+Brush&display=swap">
   <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@800&display=swap" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBysIm4-nGzTOpYWYRjYJQ-g7tRIAmVb2I&callback=initMap" async defer></script>
