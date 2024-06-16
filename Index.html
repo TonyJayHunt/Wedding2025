@@ -1,53 +1,90 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Nicki & Tony are getting married</title>
-  <link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tony & Nicki's Wedding</title>
+    <!-- Tailwind CSS -->
+    <link href="styles.css" rel="stylesheet">
 </head>
-<body>
-  <main>
-  <div class="background-text"></div>
-  <div id="app">  
-    <h1>{{ message }}</h1>
-    <div class="p1-container">
-      <p class="p1">Save the date: 13th December 2025</p>        
-    </div>
-    <div class="p2-container">
-    <p class="p2">Location: The Green House Hotel, Bournemouth, BH1 3AX</P>
-    </div>
-    <div class="button-container">
-	  <button class="gold-button" @click="openModal('rsvp')">RSVP</button>
-      <button class="red-button" @click="openModal('location')">Location Maps & Parking</button>
-	  <button class="red-button" @click="openModal('menus')">Menu's & Options</button>
-      <button class="gold-button" @click="openModal('upload')">Upload Your Images here</button>
-      <button class="gold-button" @click="openModal('order')">order of the day</button>
-	  <button class="red-button" @click="openModal('about')">All About Us</button>
-    </div>	
+<body class="bg-cream-100">
+    <div id="app" class="container mx-auto py-8 bg-contain bg-center bg-no-repeat h-screen" style="background-image: url('background.png');">
+        <!-- Navbar -->
+        <nav class="bg-blue-500 p-4 mb-6 bg-opacity-0 rounded-lg">
+            <div class="container mx-auto text-center">
+                <h1>Nicki & Tony Are Getting Married</h1>
+                <ul class="flex justify-center mt-4">
+                    <li class="p2"><a href="./index.html" class="text-gold-500 font-bold">Home |</a></li>
+                    <li class="p2"><a href="./location.html" class="text-gold-500 font-bold">location |</a></li>
+                    <li class="p2"><a href="./orderoftheday.html" class="text-gold-500 font-bold">Order Of The Day |</a></li>
+                    <li class="p2"><a href="./aboutus.html" class="text-gold-500 font-bold">About Us</a></li>
+                </ul>
+            </div>
+        </nav>
+        
+        <!-- Content Section -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <!-- Left Sidebar -->
+            <div class="bg-white p-6 bg-opacity-0" style="text-align: center;">
+                    <p class="p1">When</p>
+                    <p class="p1">13th December 2025.</p>
+                    <p>Day Guests 12:30 - Evening Guests 19:00</p> 
+                    <p class="p1">Where</p>
+                    <p class="p1">The Green House Hotel, Bournemouth, BH1 3AX</p>   
+            </div>
 
-   <!-- Modal  -->
-    <div v-if="isModalOpen" class="modal">
-	  <div class="modal-content">
-		<span class="close" @click="closeModal">&times;</span>
-		<h2 v-html="modalContent.message">{{modalContent.message }}</h2>
-		<div v-if="modalContent.text === 'Additional parking can be found highlighted on the image below'" id="modal-map" style="height: 300px;"></div>
-		<p v-html="modalContent.text">{{ modalContent.text }}</p>
-		<div v-if="modalContent.message === 'Nicki & Tony'">
-			<div v-html="modalContent.paragraph"></div>
-		</div>
-		<img :src="modalContent.image">				
-	  </div>
-    </div>		
-  </div>  
-  </main>
+            <!-- Main Content -->
+            <div class="bg-white p-6 bg-opacity-0">
+                <!-- Vue.js loop for news -->
+                <div v-for="choicesItem in choices" :key="choicesItem.id" class="flex flex-col items-center">
+                    <button @click="showModal(choicesItem)" class="custom-button bg-button-image">
+                        <h3 class="p2">{{ choicesItem.title }}</h3>
+                    </button>
+                    <div class="text-center max-w-1/2">
+                        <p class="p3">{{ choicesItem.description }}</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Modal -->
+            <div v-if="showModalFlag" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+                <div class="bg-white p-8 rounded-lg">
+					<div v-if="selectedchoicesItem.id == 1">
+						<form @submit.prevent="submitForm">
+							<h2 class="text-xl font-semibold mb-4" style = "max-width: 70%; word-wrap: break-word;">{{ selectedchoicesItem.message }}</h2>
+							<p class="text-gray-700">{{ selectedchoicesItem.text }}</p>
+							<label for="firstName">First Name:</label>
+							<input type="text" id="firstName" v-model="firstName" required>
+							<label for="lastName">Last Name:</label>
+							<input type="text" id="lastName" v-model="lastName" required>
+							<label for="email">email:</label>
+							<input type="text" id="email" v-model="email" required>
+							<label for="guestFirstName">Guest First Name:</label>
+							<input type="text" id="guestFirstName" v-model="guestFirstName">
+							<label for="guestLastName">Guest Last Name:</label>
+							<input type="text" id="guestLastName" v-model="guestLastName">
+							<label for="attending">Attending:</label>
+							<input type="checkbox" id="attending" v-model="attending" required>
+							<button type="submit" class="mt-4 bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Submit</button>
+						  </form>
+					</div>
+					<div v-if="selectedchoicesItem.id == 2">
+						<h2 class="text-xl font-semibold mb-4" style = "max-width: 70%; word-wrap: break-word;">{{ selectedchoicesItem.title }}</h2>
+						<p class="text-gray-700">{{ selectedchoicesItem.description }}</p>
+					</div>
+					<div v-if="selectedchoicesItem.id == 3">
+						<h2 class="text-xl font-semibold mb-4" style = "max-width: 70%; word-wrap: break-word;">{{ selectedchoicesItem.title }}</h2>
+						<p class="text-gray-700">{{ selectedchoicesItem.description }}</p>						
+					</div>
+                    <button @click="closeModal" class="mt-4 bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Close</button>
+                </div>
+            </div>
+        </div>
+            
+    </div>
 
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sergio+Trendy&display=swap">
-  <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Alex+Brush&display=swap">
-  <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@800&display=swap" rel="stylesheet">
-  <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBysIm4-nGzTOpYWYRjYJQ-g7tRIAmVb2I&callback=initMap" async defer></script>
-  <script src="app.js"></script>  
-  
+    <!-- Vue.js -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+    <!-- Vue script -->
+    <script src="scripts.js"></script>
 </body>
 </html>

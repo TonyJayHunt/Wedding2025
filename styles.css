@@ -1,41 +1,13 @@
-body {
-  margin: 0;
-  padding: 0;
-  background-color: rgba(255, 255, 240, 0.8); /* Cream background color */
-  position: relative;
-  font-family: 'Arial', sans-serif;
-}
+@import url('https://cdn.jsdelivr.net/npm/tailwindcss@2.2.16/dist/tailwind.min.css');
+@import url('https://fonts.googleapis.com/css2?family=Alex+Brush&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Sergio+Trendy&display=swap');
 
-body::before {
-  content: "";
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  opacity: 1; /* Set the opacity to 100% */
-  z-index: -1; /* Ensure the pseudo-element is rendered below other content */
-   /* Adjust the starting point based on the button container */
-  background-position: 0% 4.5vh; /* Use the same value as the button margin-top */	
-}
-
-#app {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  position: relative;
-  justify-content: flex-start;
-  height: 100vh;
-  margin: 0; /* Adjust the margin */
-  padding: 0; /* Adjust the padding */
-  background-color: rgba(255, 255, 240, 0.0);
-}
 
 h1 {
   margin-top: 5vh;
-  font-size: 6vw;
+  font-size: 4.3vw; /* Slightly larger font size */
   color: transparent;
-  -webkit-text-stroke: 0.01% black;
+  -webkit-text-stroke: 0.1px rgba(206, 130, 16, 0.774); /* Adjust stroke size if needed */
   background: linear-gradient(45deg, #ffd700, #ffcc00, #ffd700, #ffcc00);
   background-size: 400% 400%;
   font-family: 'Alex Brush', cursive;
@@ -46,218 +18,146 @@ h1 {
   text-align: center;
 }
 
-@media screen and (min-width: 600px) {
-  h1 {
-    font-size: 6vw;
-  }
-}
-
-@media screen and (min-width: 900px) {
-  h1 {
-    font-size: 4vw;
-  }
-}
-
-.p1-container {
-  margin-top: 1vh; /* Adjust the margin relative to the screen height */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: auto; /* Remove fixed height */
-  text-align: center;
+h2 {
+  font-size: 2.5vw; /* Adjust font size as needed */
+  color: black;
+  -webkit-text-stroke: 0.1px rgb(0, 0, 0); /* Adjust stroke size if needed */
+  font-family: 'Sergio Trendy', cursive;
+  animation: sparkle 1.5s infinite linear;
+  -webkit-background-clip: text;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  height: auto;
+  text-align: left;
 }
 
 .p1 {
-  margin-top: 2vh; /* Adjust the margin relative to the screen height */
-  font-size: 4vw; /* Set font size using vw units */
-  font-family: 'Sergio Trendy', sans-serif; 
-  font-weight: 800;
-  color: black; /* Use lowercase 'black' */
-}
-
-/* You can use media queries for further adjustments at different screen sizes */
-@media screen and (min-width: 600px) {
-  .p1 {
-    font-size: 2.5vw;
-  }
-}
-
-@media screen and (min-width: 900px) {
-  .p1 {
-    font-size: 2vw;
-  }
-}
-
-
-.p2-container {
-  margin-top: 1vh; /* Adjust the margin relative to the screen height */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: auto; /* Remove fixed height */
-  text-align: center;
+  font-size: 1.5vw; /* Adjust font size as needed */
+  color: black;
+  -webkit-text-stroke: 0.1px rgb(0, 0, 0); /* Adjust stroke size if needed */
+  font-family: 'Sergio Trendy', cursive;
+  animation: sparkle 1.5s infinite linear;
+  -webkit-background-clip: text;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  height: auto;
 }
 
 .p2 {
-  margin-top: 10 vh;
-  position: absolute;
-  justify-content: center;
-  font-size: 3vh;
-  font-family: 'Sergio Trendy', sans-serif; 
-  font-weight: 800;
-  color: Black; 
+  font-size: 1vw; /* Adjust font size as needed */
+  -webkit-text-stroke: 0.1px rgb(0, 0, 0); /* Adjust stroke size if needed */
+  font-family: 'Sergio Trendy', cursive;
+  animation: sparkle 1.5s infinite linear;
+  -webkit-background-clip: text;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  height: auto;
 }
 
-@media screen and (min-width: 600px) {
-  .p2 {
-    font-size: 2vw;
+.p3 {
+  font-size: 0.75vw; /* Adjust font size as needed */
+  color: black;
+  -webkit-text-stroke: 0.1px rgb(0, 0, 0); /* Adjust stroke size if needed */
+  font-family: 'Sergio Trendy', cursive;
+  animation: sparkle 1.5s infinite linear;
+  -webkit-background-clip: text;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  height: auto;
+  text-align: left; 
+}
+
+
+@keyframes sparkle {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 100% 50%;
   }
 }
 
-@media screen and (min-width: 900px) {
-  .p2 {
-    font-size: 1.5vw;
+.scrollbar::-webkit-scrollbar {
+    width: 1px;
+    border-radius: 1px;
+}
+
+.scrollbar::-webkit-scrollbar-thumb {
+    background-color: #4A5568;
+    border-radius: 2px;
+}
+
+.scrollbar::-webkit-scrollbar-track {
+    background-color: #CBD5E0;
+    border-radius: 1px;
+}
+
+.slide-enter-active, .slide-leave-active {
+  transition: opacity 0.5s;
+}
+.slide-enter, .slide-leave-to {
+  opacity: 0;
+}
+
+@media (max-width: 715px) {
+  #app {
+    background-size: auto auto;
   }
 }
 
-
-@keyframes twinkle {
-  0%, 100% {
-    opacity: 1;
-	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  }
-  50% {
-    opacity: 0.8;
-	box-shadow: 0 4px 8px rgba(0, 0, 0, 0);
-  }
-}
-
-
-.button-container {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(250px, 1fr));
-  gap: 2vw; /* Adjust the gap between buttons */
-  justify-content: center;
-  align-items: center;
-  margin-top: 4.5vh; /* Adjust the margin from the top */
-  background-image: url('background2.png'); /* Replace with your actual image URL */
-  background-size: 100% 100%;
-  background-position: center;
-  background-repeat: no-repeat;
-  padding: 140px; /* Adjust padding as needed */
-  flex: 1; /* Make the button-container fill the available space */
-}
-
-.gold-button,
-.red-button {
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
   width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+}
+
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.custom-button {
+  width: 50%;
   height: 5vw;
-  border-radius: 5vw;
+  border-radius: 2.5vw;
   font-size: 1vw;
   font-weight: bold;
   color: #000;
   text-align: center;
-  text-decoration: none;
+  text-justify: auto;
   display: inline-block;
   cursor: pointer;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  transition: transform 0.2s ease-in-out;
+  transition: transform 0.2s ease-in-out, background-image 0.2s ease-in-out, color 0.2s ease-in-out; /* Added color transition */
+  border: 2px solid black; /* Black border */
 }
 
-/* Media query for screens with a maximum width of 768px (adjust as needed) */
-@media (max-width: 768px) {
-  .button-container {
-    grid-template-columns: 1fr; /* Set to a single column for smaller screens */
-    gap: 1vw; /* Adjust the gap between buttons for smaller screens */
-    background-image: url('background.png'); /* Replace with your actual image URL */
-  }
+.custom-button:hover {
+  transform: scale(1.05);
+  background-image: url('red-background-image.jpg'); /* Adjust the path to your red background image */
+  color: white; /* Change text color to white on hover */
 }
 
-.gold-button {
-  background-image: url('gold-background-image.jpg'); 
-  background-size: cover; 
-  color: #fff; /* Set text color to white */
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-}
-
-.red-button {
-  background-image: url('red-background-image.jpg'); 
-  background-size: cover; 
-  color: #fff; 
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-}
-
-.gold-button:hover,
-.red-button:hover {
-  opacity: 1;
-  transform: scale(1.5); /* Add a scale effect on hover */
-}
-
-.background-text {
-  position: absolute;
-  font-size: 200px;
-  color: transparent;
-  background: linear-gradient(45deg, #ffd700, #ffcc00, #ffd700, #ffcc00);
-  color: rgba(255, 255, 255, 0.5);
-  background-size: 400% 400%;
-  animation: sparkle 1.5s infinite linear;
-  -webkit-background-clip: text;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-  font-family: 'Times New Roman', serif;
-  transform: translate(-50%, -50%); /* Center the text */
-  top: 50%;
-  left: 50%;
-}
-
-.modal {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.3); /* Semi-transparent black background */
-  overflow: auto;
-}
-
-.modal-content {
-  position: relative;
-  font-family: 'Lexend', serif; 
-  margin: 10% auto;
-  padding: 20px;
-  background-color: #fff;
-  border-radius: 5px;
-  max-width: 600px; /* Adjust the maximum width of the modal */
-  overflow: hidden;
-}
-
-.modal-content::before {
-  content: "";
-  position: absolute; /* Change position to absolute */
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background: url('emblem.png') center center no-repeat;
-  background-size: 50%; /* Adjust the size of the background image */
-  opacity: 0.5; /* Set the opacity to 50% for the background image */
-  z-index: -1;
-  width: 100%;
-  height: 100%;
-}
-
-.close {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  font-size: 20px;
-  font-weight: bold;
-  cursor: pointer;
-}
-
-.modal-body {
-  text-align: center;
-}
-
-.modal-content img {
-  max-width: 100%; /* Make sure the image doesn't exceed the width of the modal */
-  height: auto;
+.bg-button-image {
+  background-image: url('gold-background-image.jpg'); /* Adjust the path to your image */
+  background-size: cover;
+  background-position: center;
 }

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>T&N Wedding Location</title>
+
+    <link href="styles.css" rel="stylesheet">
+</head>
+<body class="bg-cream-100">
+        <div id="app" class="container mx-auto py-8 bg-contain bg-center bg-no-repeat h-screen" style="background-image: url('background.png');">
+        <!-- Navbar -->
+        <nav class="bg-blue-500 p-4 mb-6 bg-opacity-0 rounded-lg">
+            <div class="container mx-auto text-center">
+                <h1>Wedding Location</h1>
+                    <ul class="flex justify-center mt-4">
+                        <li class="p2"><a href="./index.html" class="text-gold-500 font-bold">Home |</a></li>
+                        <li class="p2"><a href="./location.html" class="text-gold-500 font-bold">location |</a></li>
+                        <li class="p2"><a href="./orderoftheday.html" class="text-gold-500 font-bold">Order Of The Day |</a></li>
+                        <li class="p2"><a href="./aboutus.html" class="text-gold-500 font-bold">About Us</a></li>
+                    </ul>
+            </div>
+        </nav>
+		
+		       <!-- Content Section -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <!-- Left Sidebar -->
+            <div class="bg-white p-6 bg-opacity-0">
+                <div class="border-t border-gray-200">
+					<div id="map" class="border-t border-gray-200 h-96 mt-4"></div>
+                </div>
+            </div>
+
+
+			<div class="bg-white p-6 bg-opacity-0">
+				<h2 class="text-xl font-semibold mb-4 justify-center">Parking and description</h2>
+				<div class="scrollbar bg-gray-200 rounded-lg p-3 overflow-y-auto scrollbar-hide bg-opacity-0" style="max-height: 14.4rem;">
+					<div class="max-w-full justify-center">
+						<p class = "p3">Places to park if you cant get into the hotel car park (its not that big)</p> 
+						<img src="parking.jpg" alt="parking map">  
+					</div>
+				</div>
+			</div>
+		</div>
+			
+    </div>
+
+    <!-- Vue.js -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBysIm4-nGzTOpYWYRjYJQ-g7tRIAmVb2I&callback=initMap" async defer></script>
+
+    <!-- Vue script -->
+    <script src="scripts.js"></script>
+</body>
+</html>
