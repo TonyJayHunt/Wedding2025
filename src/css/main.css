@@ -1,69 +1,11 @@
+/* main.css */
+
+/* 1. Tailwind & Font Imports */
 @import url('https://cdn.jsdelivr.net/npm/tailwindcss@2.2.16/dist/tailwind.min.css');
 @import url('https://fonts.googleapis.com/css2?family=Alex+Brush&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Sergio+Trendy&display=swap');
 
-
-h1 {
-  margin-top: 5vh;
-  font-size: 4.3vw; /* Slightly larger font size */
-  color: transparent;
-  -webkit-text-stroke: 0.1px rgba(206, 130, 16, 0.774); /* Adjust stroke size if needed */
-  background: linear-gradient(45deg, #ffd700, #ffcc00, #ffd700, #ffcc00);
-  background-size: 400% 400%;
-  font-family: 'Alex Brush', cursive;
-  animation: sparkle 1.5s infinite linear;
-  -webkit-background-clip: text;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-  height: auto;
-  text-align: center;
-}
-
-h2 {
-  font-size: 2.5vw; /* Adjust font size as needed */
-  color: black;
-  -webkit-text-stroke: 0.1px rgb(0, 0, 0); /* Adjust stroke size if needed */
-  font-family: 'Sergio Trendy', cursive;
-  animation: sparkle 1.5s infinite linear;
-  -webkit-background-clip: text;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-  height: auto;
-  text-align: left;
-}
-
-.p1 {
-  font-size: 1.5vw; /* Adjust font size as needed */
-  color: black;
-  -webkit-text-stroke: 0.1px rgb(0, 0, 0); /* Adjust stroke size if needed */
-  font-family: 'Sergio Trendy', cursive;
-  animation: sparkle 1.5s infinite linear;
-  -webkit-background-clip: text;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-  height: auto;
-}
-
-.p2 {
-  font-size: 1vw; /* Adjust font size as needed */
-  -webkit-text-stroke: 0.1px rgb(0, 0, 0); /* Adjust stroke size if needed */
-  font-family: 'Sergio Trendy', cursive;
-  animation: sparkle 1.5s infinite linear;
-  -webkit-background-clip: text;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-  height: auto;
-}
-
-.p3 {
-  font-size: 0.75vw; /* Adjust font size as needed */
-  color: black;
-  -webkit-text-stroke: 0.1px rgb(0, 0, 0); /* Adjust stroke size if needed */
-  font-family: 'Sergio Trendy', cursive;
-  animation: sparkle 1.5s infinite linear;
-  -webkit-background-clip: text;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-  height: auto;
-  text-align: left; 
-}
-
-
+/* 2. Animations */
 @keyframes sparkle {
   0% {
     background-position: 0% 50%;
@@ -73,34 +15,102 @@ h2 {
   }
 }
 
+/* 3. Typography & Shared Styles */
+h1 {
+  margin-top: 5vh;
+  font-size: 4.3vw; /* Slightly larger font size */
+  color: transparent;
+  -webkit-text-stroke: 0.1px rgba(206, 130, 16, 0.774);
+  background: linear-gradient(45deg, #ffd700, #ffcc00, #ffd700, #ffcc00);
+  background-size: 400% 400%;
+  font-family: 'Alex Brush', cursive;
+  animation: sparkle 1.5s infinite linear;
+  -webkit-background-clip: text;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  text-align: center;
+  height: auto;
+}
+
+h2 {
+  font-size: 2.5vw;
+  color: black;
+  -webkit-text-stroke: 0.1px rgb(0, 0, 0);
+  font-family: 'Sergio Trendy', cursive;
+  animation: sparkle 1.5s infinite linear;
+  -webkit-background-clip: text;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  text-align: left;
+  height: auto;
+}
+
+.p1 {
+  font-size: 1.5vw;
+  color: black;
+  -webkit-text-stroke: 0.1px rgb(0, 0, 0);
+  font-family: 'Sergio Trendy', cursive;
+  animation: sparkle 1.5s infinite linear;
+  -webkit-background-clip: text;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  height: auto;
+}
+
+.p2 {
+  font-size: 1vw;
+  -webkit-text-stroke: 0.1px rgb(0, 0, 0);
+  font-family: 'Sergio Trendy', cursive;
+  animation: sparkle 1.5s infinite linear;
+  -webkit-background-clip: text;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  height: auto;
+}
+
+.p3 {
+  font-size: 0.75vw;
+  color: black;
+  -webkit-text-stroke: 0.1px rgb(0, 0, 0);
+  font-family: 'Sergio Trendy', cursive;
+  animation: sparkle 1.5s infinite linear;
+  -webkit-background-clip: text;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  text-align: left;
+  height: auto;
+}
+
+/* 4. Scrollbar Styles */
 .scrollbar::-webkit-scrollbar {
-    width: 1px;
-    border-radius: 1px;
+  width: 1px;
+  border-radius: 1px;
 }
 
 .scrollbar::-webkit-scrollbar-thumb {
-    background-color: #4A5568;
-    border-radius: 2px;
+  background-color: #4A5568;
+  border-radius: 2px;
 }
 
 .scrollbar::-webkit-scrollbar-track {
-    background-color: #CBD5E0;
-    border-radius: 1px;
+  background-color: #CBD5E0;
+  border-radius: 1px;
 }
 
-.slide-enter-active, .slide-leave-active {
+/* 5. Vue Transition Classes */
+.slide-enter-active,
+.slide-leave-active {
   transition: opacity 0.5s;
 }
-.slide-enter, .slide-leave-to {
+
+.slide-enter,
+.slide-leave-to {
   opacity: 0;
 }
 
+/* 6. Responsiveness */
 @media (max-width: 715px) {
   #app {
     background-size: auto auto;
   }
 }
 
+/* 7. Modal Classes */
 .modal {
   display: none;
   position: fixed;
@@ -134,6 +144,7 @@ h2 {
   cursor: pointer;
 }
 
+/* 8. Custom Button Styles */
 .custom-button {
   width: 50%;
   height: 5vw;
@@ -142,22 +153,24 @@ h2 {
   font-weight: bold;
   color: #000;
   text-align: center;
-  text-justify: auto;
   display: inline-block;
   cursor: pointer;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  transition: transform 0.2s ease-in-out, background-image 0.2s ease-in-out, color 0.2s ease-in-out; /* Added color transition */
+  transition: transform 0.2s ease-in-out,
+              background-image 0.2s ease-in-out,
+              color 0.2s ease-in-out; 
   border: 2px solid black; /* Black border */
 }
 
 .custom-button:hover {
   transform: scale(1.05);
-  background-image: url('red-background-image.jpg'); /* Adjust the path to your red background image */
+  background-image: url('../../public/images/red-background-image.jpg');
   color: white; /* Change text color to white on hover */
 }
 
+/* Use this class if you want a default gold background on the button */
 .bg-button-image {
-  background-image: url('gold-background-image.jpg'); /* Adjust the path to your image */
+  background-image: url('../../public/images/gold-background-image.jpg');
   background-size: cover;
   background-position: center;
 }

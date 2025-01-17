@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+    <title>T&N Wedding – About Us</title>
+
+    <!-- Normalize CSS (optional) -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
+    />
+
+    <!-- Your combined Tailwind + custom styles -->
+    <!-- Path assumes this file is in `src/pages/` and main.css is in `src/css/` -->
+    <link rel="stylesheet" href="../css/main.css" />
+  </head>
+  <body class="bg-cream-100">
+    <div
+      id="app"
+      class="container mx-auto py-8 bg-contain bg-center bg-no-repeat h-screen"
+      style="background-image: url('../../public/images/background.png');"
+    >
+      <!-- Navbar -->
+      <nav class="bg-blue-500 p-4 mb-6 bg-opacity-0 rounded-lg">
+        <div class="container mx-auto text-center">
+          <h1>Nicki & Tony About Us</h1>
+          <ul class="flex justify-center mt-4">
+            <!-- Update links to navigate between pages -->
+            <li class="p2">
+              <a href="../index.html" class="text-gold-500 font-bold"
+                >Home |</a
+              >
+            </li>
+            <li class="p2">
+              <a href="./location.html" class="text-gold-500 font-bold"
+                >Location |</a
+              >
+            </li>
+            <li class="p2">
+              <a href="./orderoftheday.html" class="text-gold-500 font-bold"
+                >Order Of The Day |</a
+              >
+            </li>
+            <li class="p2">
+              <a href="./aboutus.html" class="text-gold-500 font-bold"
+                >About Us</a
+              >
+            </li>
+          </ul>
+        </div>
+      </nav>
+
+      <!-- Content Section -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <!-- Left Sidebar: Image Carousel -->
+        <!-- Notice we use a separate Vue instance in the `ImageCarouselScript.js` -->
+        <div class="bg-white p-6 bg-opacity-0" style="text-align: center;">
+          <template v-if="currentImage !== undefined">
+            <div class="grid grid-cols-3 gap-6 items-center">
+              <!-- Prev Button -->
+              <div class="md:flex md:items-center md:justify-center">
+                <button
+                  @click="prevImage"
+                  class="bg-gold-300 hover:bg-gold-400 text-silver-800 text-7xl"
+                >
+                  &#10094;
+                </button>
+              </div>
+
+              <!-- Image Container -->
+              <div class="overflow-hidden col-span-1 flex justify-center">
+                <transition name="slide" mode="out-in">
+                  <img
+                    :key="currentImage"
+                    :src="images[currentImage]"
+                    alt="carousel image"
+                    class="w-full"
+                    style="max-width: 100%; max-height: 300px; margin: auto;"
+                  />
+                </transition>
+              </div>
+
+              <!-- Next Button -->
+              <div class="md:flex md:items-center md:justify-center">
+                <button
+                  @click="nextImage"
+                  class="bg-gold-300 hover:bg-gold-400 text-silver-800 text-7xl"
+                >
+                  &#10095;
+                </button>
+              </div>
+            </div>
+          </template>
+        </div>
+
+        <!-- Right Sidebar: About Us Text -->
+        <div class="bg-white p-6 bg-opacity-0">
+          <h2 style="text-align: center;">About Us</h2>
+          <div
+            class="scrollbar bg-gray-200 rounded-lg p-3 overflow-y-auto bg-opacity-0"
+            style="max-height: 14.4rem; max-width: 70%; margin: auto;"
+          >
+            <div class="max-w-full text-center">
+              <p>Tony had returned to Bournemouth from London.</p>
+              <p>Nicki had returned to Dorchester from Northumberland.</p>
+              <p>
+                Both were attempting to rebuild themselves, after previously
+                failed relationships and financial woes.
+              </p>
+              <p>Tony the awkward geek and Nicki the liberal homebody.</p>
+              <p>
+                There would never have been a good reason for the two to meet,
+                but the world of Internet dating meant Tony came across Nicki
+                one evening and enticed her with his wit and charm!
+              </p>
+              <p>
+                There it began, something neither one ever predicted would
+                result in much. Tony and Nicki met on the 8th June 2014... a
+                date in Bournemouth, where a spark was ignited.
+              </p>
+              <p>
+                Now these two could not be more different... Tony is a
+                fact-based, black-and-white kind of guy, with a love for music,
+                film, and all things geeky. Nicki is a morally righteous kind of
+                girl, with a love for reality TV and TikTok.
+              </p>
+              <p>
+                Both had commitment fears, character flaws, and previously made
+                unwise life decisions. Neither really had much to offer, yet
+                something special started between them.
+              </p>
+              <p>
+                Many may judge that Nicki is spoiled and Tony is soft. In fact,
+                there is a lot of mutual respect and support. They share
+                important core values like compassion and trust—and they share
+                a lot of laughter.
+              </p>
+              <p>
+                Their differences have worked well at times. Nicki introduced
+                Tony to Christmas decorations and ethical debates, while Tony
+                introduced Nicki to new foods and to Game of Thrones, for which
+                she’ll be forever grateful. There remain many differences: Tony
+                refuses Big Brother and Nicki declines anything anime.
+              </p>
+              <p>
+                They have built a home and life together, unique to them. Neither
+                would say there haven’t been ups and downs, but nearly 10 years
+                on, both have changed considerably. They’ve progressed in their
+                careers, saved hard for a home, and rather than growing apart,
+                they’ve grown together.
+              </p>
+              <p>
+                Their shared core values and united life goals are what led Nicki
+                and Tony to decide to make their relationship official and tie
+                the knot on December 13th, 2025.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Vue.js (CDN) -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+    <!-- Polyfill (if needed) -->
+    <script src="https://polyfill.io/v3/polyfill.min.js"></script>
+    <!-- Local Carousel Script (Vue instance for images) -->
+    <!-- If `ImageCarouselScript.js` is in `src/js/`, update relative path accordingly -->
+    <script src="../js/ImageCarouselScript.js"></script>
+  </body>
+</html>

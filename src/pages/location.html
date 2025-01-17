@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+    <title>T&N Wedding – Location</title>
+
+    <!-- Normalize CSS (optional) -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
+    />
+
+    <!-- Your combined Tailwind + custom styles -->
+    <!-- Assumes main.css is in ../css/ relative to src/pages/ -->
+    <link rel="stylesheet" href="../css/main.css" />
+  </head>
+  <body class="bg-cream-100">
+    <div
+      id="app"
+      class="container mx-auto py-8 bg-contain bg-center bg-no-repeat h-screen"
+      style="background-image: url('../../puplic/images/background.png');"
+    >
+      <!-- Navbar -->
+      <nav class="bg-blue-500 p-4 mb-6 bg-opacity-0 rounded-lg">
+        <div class="container mx-auto text-center">
+          <h1>Wedding Location</h1>
+          <ul class="flex justify-center mt-4">
+            <!-- Adjust links depending on your file structure -->
+            <li class="p2">
+              <a href="../index.html" class="text-gold-500 font-bold"
+                >Home |</a
+              >
+            </li>
+            <li class="p2">
+              <a href="./location.html" class="text-gold-500 font-bold"
+                >Location |</a
+              >
+            </li>
+            <li class="p2">
+              <a href="./orderoftheday.html" class="text-gold-500 font-bold"
+                >Order Of The Day |</a
+              >
+            </li>
+            <li class="p2">
+              <a href="./aboutus.html" class="text-gold-500 font-bold"
+                >About Us</a
+              >
+            </li>
+          </ul>
+        </div>
+      </nav>
+
+      <!-- Content Section -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <!-- Left: Map Display -->
+        <div class="bg-white p-6 bg-opacity-0">
+          <div class="border-t border-gray-200">
+            <!-- The map container (Google Maps loads here) -->
+            <div id="map" class="border-t border-gray-200 h-96 mt-4"></div>
+          </div>
+        </div>
+
+        <!-- Right: Parking & Description -->
+        <div class="bg-white p-6 bg-opacity-0">
+          <h2 class="text-xl font-semibold mb-4 text-center">Parking & Description</h2>
+          <div class="text-center">
+            <p class="p3">
+              Places to park if you can’t get into the hotel car park (it’s not that big):
+            </p>
+            <!-- Responsive full-width image -->
+            <img
+              src="../../public/images/parking.jpg"
+              alt="Parking Map"
+              class="mt-2 w-full h-auto"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Vue.js (CDN) -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+
+    <!-- Mapbox JavaScript API -->
+    <script src="https://cdn.jsdelivr.net/npm/mapbox-gl@2.6.1/dist/mapbox-gl.js"></script>
+    <!-- Adjust path if your script is named differently or in another folder -->
+    <script src="../js/map_script.js"></script>
+  </body>
+</html>

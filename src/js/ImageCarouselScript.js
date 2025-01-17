@@ -5,10 +5,16 @@ document.addEventListener('DOMContentLoaded', function() {
   data() {
     return {
     images: [
-      'emblem.png',
-      'parking.jpg',
-      'penguin.png',
-      'us2.jpg'
+      '../../public/images/us01.jpg',
+      '../../public/images/us02.jpg',
+      '../../public/images/us03.jpg',
+      '../../public/images/us04.jpg',
+      '../../public/images/us05.jpg',
+      '../../public/images/us06.jpg',
+      '../../public/images/us07.jpg',
+      '../../public/images/us08.jpg',
+      '../../public/images/us09.jpg',
+      '../../public/images/us10.jpg'
     ],
     currentImage: 0
     };

@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+    <title>Tony & Nicki's Wedding</title>
+
+    <!-- Normalize CSS (optional) -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
+    />
+
+    <!-- Your combined Tailwind + custom styles -->
+    <!-- main.css already imports Tailwind and Google Fonts -->
+    <link rel="stylesheet" href="./css/main.css" />
+  </head>
+  <body class="bg-cream-100">
+    <div
+      id="app"
+      class="container mx-auto py-8 bg-contain bg-center bg-no-repeat h-screen"
+      style="background-image: url('../public/images/background.png');"
+    >
+      <!-- Navbar -->
+      <nav class="bg-blue-500 p-4 mb-6 bg-opacity-0 rounded-lg">
+        <div class="container mx-auto text-center">
+          <h1>Nicki & Tony Are Getting Married</h1>
+          <ul class="flex justify-center mt-4">
+            <!-- Update your links if needed -->
+            <li class="p2">
+              <a href="./index.html" class="text-gold-500 font-bold"
+                >Home |</a
+              >
+            </li>
+            <li class="p2">
+              <a href="./pages/location.html" class="text-gold-500 font-bold"
+                >Location |</a
+              >
+            </li>
+            <li class="p2">
+              <a
+                href="./pages/orderoftheday.html"
+                class="text-gold-500 font-bold"
+                >Order Of The Day |</a
+              >
+            </li>
+            <li class="p2">
+              <a href="./pages/aboutus.html" class="text-gold-500 font-bold"
+                >About Us</a
+              >
+            </li>
+          </ul>
+        </div>
+      </nav>
+
+      <!-- Content Section -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <!-- Left Sidebar -->
+        <div class="bg-white p-6 bg-opacity-0 text-center">
+          <p class="p1">When</p>
+          <p class="p1">13th December 2025.</p>
+          <p>Day Guests 12:30 - Evening Guests 19:00</p>
+          <p class="p1">Where</p>
+          <p class="p1">
+            The Green House Hotel, Bournemouth, BH1 3AX
+          </p>
+        </div>
+
+        <!-- Main Content with Vue Loop -->
+        <div class="bg-white p-6 bg-opacity-0">
+          <div
+            v-for="choicesItem in choices"
+            :key="choicesItem.id"
+            class="flex flex-col items-center"
+          >
+            <button
+              @click="showModal(choicesItem)"
+              class="custom-button bg-button-image"
+            >
+              <h3 class="p2">{{ choicesItem.title }}</h3>
+            </button>
+            <div class="text-center max-w-1/2">
+              <p class="p3">{{ choicesItem.description }}</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Modal -->
+        <div
+          v-if="showModalFlag"
+          class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50"
+        >
+          <div class="bg-white p-8 rounded-lg">
+            <!-- RSVP Form (id = 1) -->
+            <div v-if="selectedchoicesItem.id === 1">
+              <form @submit.prevent="submitForm">
+                <h2
+                  class="text-xl font-semibold mb-4"
+                  style="max-width: 70%; word-wrap: break-word;"
+                >
+                  {{ selectedchoicesItem.message }}
+                </h2>
+                <p class="text-gray-700">
+                  {{ selectedchoicesItem.text }}
+                </p>
+
+                <label for="firstName">First Name:</label>
+                <input
+                  type="text"
+                  id="firstName"
+                  v-model="firstName"
+                  required
+                  class="border rounded w-full mb-2"
+                />
+
+                <label for="lastName">Last Name:</label>
+                <input
+                  type="text"
+                  id="lastName"
+                  v-model="lastName"
+                  required
+                  class="border rounded w-full mb-2"
+                />
+
+                <label for="email">Email:</label>
+                <input
+                  type="email"
+                  id="email"
+                  v-model="email"
+                  required
+                  class="border rounded w-full mb-2"
+                />
+
+                <label for="guestFirstName">Guest First Name:</label>
+                <input
+                  type="text"
+                  id="guestFirstName"
+                  v-model="guestFirstName"
+                  class="border rounded w-full mb-2"
+                />
+
+                <label for="guestLastName">Guest Last Name:</label>
+                <input
+                  type="text"
+                  id="guestLastName"
+                  v-model="guestLastName"
+                  class="border rounded w-full mb-2"
+                />
+
+                <div class="flex items-center mb-2">
+                  <input
+                    type="checkbox"
+                    id="attending"
+                    v-model="attending"
+                    required
+                    class="mr-2"
+                  />
+                  <label for="attending">Attending</label>
+                </div>
+
+                <button
+                  type="submit"
+                  class="mt-4 bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                >
+                  Submit
+                </button>
+              </form>
+            </div>
+
+            <!-- Gift Registry / Additional Info (id = 2) -->
+            <div v-else-if="selectedchoicesItem.id === 2">
+              <h2
+                class="text-xl font-semibold mb-4"
+                style="max-width: 70%; word-wrap: break-word;"
+              >
+                {{ selectedchoicesItem.title }}
+              </h2>
+              <p class="text-gray-700">{{ selectedchoicesItem.description }}</p>
+            </div>
+
+            <!-- Our Story / Additional Info (id = 3) -->
+            <div v-else-if="selectedchoicesItem.id === 3">
+              <h2
+                class="text-xl font-semibold mb-4"
+                style="max-width: 70%; word-wrap: break-word;"
+              >
+                {{ selectedchoicesItem.title }}
+              </h2>
+              <p class="text-gray-700">{{ selectedchoicesItem.description }}</p>
+            </div>
+
+            <!-- Close Button -->
+            <button
+              @click="closeModal"
+              class="mt-4 bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Vue.js (CDN) -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+    <!-- Polyfill (if needed) -->
+    <script src="https://polyfill.io/v3/polyfill.min.js"></script>
+    <!-- Local main.js (Your Vue instance & logic) -->
+    <script type="module" src="./js/main.js"></script>
+  </body>
+</html>
