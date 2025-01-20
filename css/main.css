@@ -17,7 +17,7 @@
 
 /* 3. Typography & Shared Styles */
 h1 {
-  margin-top: 5vh;
+  margin-top: 1vh;
   font-size: 4.3vw; /* Slightly larger font size */
   color: transparent;
   -webkit-text-stroke: 0.1px rgba(206, 130, 16, 0.774);
@@ -26,6 +26,7 @@ h1 {
   font-family: 'Alex Brush', cursive;
   animation: sparkle 1.5s infinite linear;
   -webkit-background-clip: text;
+  background-clip: text;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
   text-align: center;
   height: auto;
@@ -38,6 +39,7 @@ h2 {
   font-family: 'Sergio Trendy', cursive;
   animation: sparkle 1.5s infinite linear;
   -webkit-background-clip: text;
+  background-clip: text;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
   text-align: left;
   height: auto;
@@ -50,16 +52,18 @@ h2 {
   font-family: 'Sergio Trendy', cursive;
   animation: sparkle 1.5s infinite linear;
   -webkit-background-clip: text;
+  background-clip: text;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
   height: auto;
 }
 
 .p2 {
-  font-size: 1vw;
+  font-size: 1.3vw;
   -webkit-text-stroke: 0.1px rgb(0, 0, 0);
   font-family: 'Sergio Trendy', cursive;
   animation: sparkle 1.5s infinite linear;
   -webkit-background-clip: text;
+  background-clip: text;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
   height: auto;
 }
@@ -71,6 +75,7 @@ h2 {
   font-family: 'Sergio Trendy', cursive;
   animation: sparkle 1.5s infinite linear;
   -webkit-background-clip: text;
+  background-clip: text;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
   text-align: left;
   height: auto;
@@ -160,6 +165,7 @@ h2 {
               background-image 0.2s ease-in-out,
               color 0.2s ease-in-out; 
   border: 2px solid black; /* Black border */
+  margin-bottom: 1vh;
 }
 
 .custom-button:hover {
@@ -170,6 +176,43 @@ h2 {
 
 /* Use this class if you want a default gold background on the button */
 .bg-button-image {
+  background-image: url('../../public/images/gold-background-image.jpg');
+  background-size: cover;
+  background-position: center;
+}
+
+.custom-button2 {
+  display: inline-block;
+  /* Remove fixed width/height; let text define size */
+  /* Add some padding for spacing around text */
+  padding: 0.5rem 1rem;
+
+  border: 2px solid black; /* Black border */
+  border-radius: 2rem;     /* Or any radius you prefer */
+  font-size: 1rem;         /* Adjust as needed */
+  font-weight: bold;
+  color: #000;
+  text-align: center;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+
+  margin-bottom: 1vh;
+
+  /* Hover transition settings */
+  transition: transform 0.2s ease-in-out,
+              background-image 0.2s ease-in-out,
+              color 0.2s ease-in-out;
+}
+
+/* Hover */
+.custom-button2:hover {
+  transform: scale(1.05);
+  background-image: url('../../public/images/red-background-image.jpg');
+  color: white; /* Change text color to white on hover */
+}
+
+/* Default gold background */
+.bg-button2-image {
   background-image: url('../../public/images/gold-background-image.jpg');
   background-size: cover;
   background-position: center;

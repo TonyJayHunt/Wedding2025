@@ -1,54 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0"
-    />
-    <title>T&N Wedding – Location</title>
 
-    <!-- Normalize CSS (optional) -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
-    />
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>T&N Wedding – Location</title>
 
-    <!-- Your combined Tailwind + custom styles -->
-    <!-- Assumes main.css is in ../css/ relative to src/pages/ -->
-    <link rel="stylesheet" href="../css/main.css" />
-  </head>
-  <body class="bg-cream-100">
-    <div
-      id="app"
-      class="container mx-auto py-8 bg-contain bg-center bg-no-repeat h-screen"
-      style="background-image: url('../../puplic/images/background.png');"
-    >
+  <!-- Normalize CSS (optional) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" />
+
+  <link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/v2.12.0/mapbox-gl.css" />
+  <!-- Your combined Tailwind + custom styles -->
+  <!-- Assumes main.css is in ../css/ relative to src/pages/ -->
+  <link rel="stylesheet" href="../css/main.css" />
+</head>
+
+<body class="bg-cream-100">
+  <div class="w-full min-h-screen bg-cover bg-center bg-no-repeat"
+    style="background-image: url('../../public/images/background.png');">
+    <div id="app" class="container mx-auto py-8 bg-contain bg-center bg-no-repeat h-screen">
       <!-- Navbar -->
       <nav class="bg-blue-500 p-4 mb-6 bg-opacity-0 rounded-lg">
         <div class="container mx-auto text-center">
           <h1>Wedding Location</h1>
-          <ul class="flex justify-center mt-4">
+          <ul class="flex justify-center">
             <!-- Adjust links depending on your file structure -->
             <li class="p2">
-              <a href="../index.html" class="text-gold-500 font-bold"
-                >Home |</a
-              >
+              <a href="../index.html" class="text-gold-500 font-bold">Home |</a>
             </li>
             <li class="p2">
-              <a href="./location.html" class="text-gold-500 font-bold"
-                >Location |</a
-              >
+              <a href="./orderoftheday.html" class="text-gold-500 font-bold">Order Of The Day |</a>
             </li>
             <li class="p2">
-              <a href="./orderoftheday.html" class="text-gold-500 font-bold"
-                >Order Of The Day |</a
-              >
+              <a href="./aboutus.html" class="text-gold-500 font-bold">About Us |</a>
             </li>
-            <li class="p2">
-              <a href="./aboutus.html" class="text-gold-500 font-bold"
-                >About Us</a
-              >
+            <li v-if="isHoneymoonUnlocked" class="p2">
+              <a href="./HoneyMoonFund.html" class="text-gold-500 font-bold">Honeymoon Fund</a>
             </li>
           </ul>
         </div>
@@ -58,6 +45,9 @@
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
         <!-- Left: Map Display -->
         <div class="bg-white p-6 bg-opacity-0">
+          <button @click="goToGreenHouseHotel" class="custom-button2 bg-button2-image">
+            The Green House Hotel
+          </button>
           <div class="border-t border-gray-200">
             <!-- The map container (Google Maps loads here) -->
             <div id="map" class="border-t border-gray-200 h-96 mt-4"></div>
@@ -72,11 +62,7 @@
               Places to park if you can’t get into the hotel car park (it’s not that big):
             </p>
             <!-- Responsive full-width image -->
-            <img
-              src="../../public/images/parking.jpg"
-              alt="Parking Map"
-              class="mt-2 w-full h-auto"
-            />
+            <img src="../../public/images/parking.jpg" alt="Parking Map" class="mt-2 w-full h-auto" />
           </div>
         </div>
       </div>
@@ -89,5 +75,6 @@
     <script src="https://cdn.jsdelivr.net/npm/mapbox-gl@2.6.1/dist/mapbox-gl.js"></script>
     <!-- Adjust path if your script is named differently or in another folder -->
     <script src="../js/map_script.js"></script>
-  </body>
+</body>
+
 </html>

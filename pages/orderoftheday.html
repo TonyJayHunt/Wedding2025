@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>T&N Wedding Order of the Day</title>
+
+  <!-- Normalize CSS (optional) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" />
+
+  <!-- Your combined Tailwind + custom styles -->
+  <link rel="stylesheet" href="../css/main.css" />
+</head>
+
+<body class="bg-cream-100">
+  <div class="w-full min-h-screen bg-cover bg-center bg-no-repeat"
+    style="background-image: url('../../public/images/background.png');">
+    <div id="app" class="container mx-auto py-8 bg-contain bg-center bg-no-repeat h-screen">
+      <!-- Navbar -->
+      <nav class="bg-blue-500 p-4 bg-opacity-0 rounded-lg">
+        <div class="container mx-auto text-center">
+          <h1>Order of the Day</h1>
+          <ul class="flex justify-center">
+            <li class="p2">
+              <a href="../index.html" class="text-gold-500 font-bold">Home |</a>
+            </li>
+            <li class="p2">
+              <a href="./location.html" class="text-gold-500 font-bold">Location |</a>
+            </li>
+            <li class="p2">
+              <a href="./aboutus.html" class="text-gold-500 font-bold">About Us |</a>
+            </li>
+            <li v-if="isHoneymoonUnlocked" class="p2">
+              <a href="./HoneyMoonFund.html" class="text-gold-500 font-bold">Honeymoon Fund</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+
+      <!-- Content Section: Centered, minimal width table -->
+      <div class="bg-white p-6 bg-opacity-0 text-center">
+        <!-- "overflow-x-auto" allows horizontal scrolling if columns get too wide -->
+        <div class="overflow-x-auto inline-block">
+          <!-- 
+              table-auto => auto-sized columns
+              mx-auto => center horizontally
+              text-center => align text center
+            -->
+          <table class="table-auto mx-auto text-center border border-transparent">
+            <thead>
+              <tr class="bg-gray-100"></tr>
+            </thead>
+            <tbody>
+              <tr v-for="(row, index) in orderOfTheDay" :key="index">
+                <td class="p2 text-center border-b border-transparent px-4 py-2 whitespace-nowrap">
+                  {{ row.time }}
+                </td>
+                <td class="p2 text-center border-b border-transparent px-4 py-2 whitespace-nowrap">
+                  {{ row.activity }}
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- Vue.js -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+
+    <!-- Main JS (combined logic with parseGvizDate) -->
+    <script src="../js/main.js"></script>
+  </div>
+</body>
+
+</html>

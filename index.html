@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tony & Nicki's Wedding</title>
+
+  <!-- Normalize CSS (optional) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" />
+
+  <!-- Combined Tailwind + custom styles -->
+  <!-- Ensure main.css includes your Tailwind imports and custom styling -->
+  <link rel="stylesheet" href="./css/main.css" />
+</head>
+
+<body class="bg-cream-100">
+  <!-- Full-screen background (optional) -->
+  <div class="w-full min-h-screen bg-cover bg-center bg-no-repeat"
+    style="background-image: url('../../public/images/background.png');">
+
+    <div id="app" class="container mx-auto py-8 bg-contain bg-center h-screen">
+      <!-- Navbar -->
+      <nav class="bg-blue-500 p-4 mb-6 bg-opacity-0 rounded-lg">
+        <div class="container mx-auto text-center">
+          <h1>Nicki & Tony Are Getting Married</h1>
+          <ul class="flex justify-center">
+            <li class="p2">
+              <a href="./pages/location.html" class="text-gold-500 font-bold">Location |</a>
+            </li>
+            <li class="p2">
+              <a href="./pages/orderoftheday.html" class="text-gold-500 font-bold">Order Of The Day |</a>
+            </li>
+            <li class="p2">
+              <a href="./pages/aboutus.html" class="text-gold-500 font-bold">About Us |</a>
+            </li>
+            <li v-if="isHoneymoonUnlocked" class="p2">
+              <a href="./pages/HoneyMoonFund.html" class="text-gold-500 font-bold">Honeymoon Fund</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+
+      <!-- Content Section -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <!-- Left Sidebar -->
+        <div class="bg-white p-6 bg-opacity-0 text-center mt-10 w-4/4 mx-auto">
+          <p class="p1">Welcome to our Wedding Website.</p>
+          <p class="p1">We get married on Saturday 13th December 2025.</p>
+          <p class="p1">At The Green House Hotel, Bournemouth.</p>
+          <p class="p1">
+            If you have received an invite, please follow the instructions
+            from the "Invitation and RSVP" button.
+          </p>
+          <p class="p1">We can’t wait to celebrate with you.</p>
+          <p class="p1">Nicki & Tony.</p>
+        </div>
+
+        <!-- Right Sidebar: Main Content with Vue Loop -->
+        <div class="bg-white p-6 bg-opacity-0">
+          <!-- Only show "unlocked" choices -->
+          <div v-for="choice in filteredChoices" :key="choice.id" class="flex flex-col items-center">
+            <button @click="showModal(choice)" class="custom-button bg-button-image">
+              <h3 class="p2">{{ choice.title }}</h3>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Modal -->
+      <div v-if="showModalFlag" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+        <div class="bg-white p-8 rounded-lg text-center flex flex-col items-center w-1/2 max-h-[80vh] overflow-y-auto">
+          <!-- RSVP (id = 1) -->
+          <div v-if="selectedchoicesItem.id === 1">
+            <template v-if="!showInviteResult">
+              <h2 class="text-xl font-semibold mb-4" style="max-width: 70%; word-wrap: break-word;">
+                {{ selectedchoicesItem.message }}
+              </h2>
+              <p class="text-gray-700">
+                {{ selectedchoicesItem.text }}
+              </p>
+
+              <label for="code">Code given in invite:</label>
+              <!-- We now bind to rsvpform.code instead of "code" -->
+              <input type="text" id="code" v-model="rsvpform.code" required class="border rounded w-full mb-2" />
+              <!-- Submit button triggers submitForm in main.js -->
+              <button type="button" @click="submitForm" class="custom-button2 bg-button2-image">
+                Submit
+              </button>
+            </template>
+
+            <!-- Show the result if code is valid -->
+            <template v-else>
+              <p class="p2 whitespace-pre-line">{{ inviteMessage }}</p>
+              <button @click="goToInviteLink" class="custom-button2 bg-button2-image">
+                {{buttontext}}
+              </button>
+            </template>
+          </div>
+
+          <!-- Additional Information (id = 2) -->
+          <div v-else-if="selectedchoicesItem.id === 2">
+            <!-- Inner container: 30% width, centered, with text centered -->
+            <div class="mx-auto text-center overflow-y-auto" style="max-width: 100%; max-height: 40rem;">
+              <h2 class="text-xl font-semibold mb-4 break-words">
+                {{ selectedchoicesItem.title }}
+              </h2>
+              <p class="text-gray-700 break-words mb-4">
+                <b>Drinks:</b> Sadly it is not an open bar. You will receive a drink after
+                the ceremony, during the drinks reception. There will also be wine provided
+                during the wedding breakfast. There will also be opportunities during the
+                day to collect a couple of drinks tokens that guests can use at the bar.
+              </p>
+              <p class="text-gray-700 break-words mb-4">
+                <b>Dress Code:</b> This is a wedding, and it’s Christmas, who needs a better
+                reason to dress up. Our vision is; Elegance at Christmas, sparkly but classy.
+                Please no Christmas jumpers!
+              </p>
+              <p class="text-gray-700 break-words">
+                <b>Location:</b> The Ceremony, Wedding Breakfast and Evening Reception
+                are all being held at
+                <a href="http://www.thegreenhousehotel.com/" target="_blank">The Green House Hotel.</a>
+              </p>
+              <p class="text-gray-700 break-words mb-4">
+                <b>Parking:</b> Parking details can also be found on the <a href="./pages/location.html"
+                  target="_blank">‘location’</a> tab from our website.
+              </p>
+              <p class="text-gray-700 break-words mb-4">
+                <b>Accommodation:</b> Some rooms are available at <a href="http://www.thegreenhousehotel.com/"
+                  target="_blank">The Green House Hotel.</a>. Please enquire with them directly . For additional
+                options, there are many nearby hotels.
+              </p>
+              <p class="text-gray-700 break-words mb-4">
+                <b>Gifts:</b> Your presence at our wedding is the greatest gift you could give us! No gifts are
+                expected, but if you’d like, a contribution towards our <a href="./pages/HoneyMoonFund.html"
+                  target="_blank">honeymoon fund</a> would be truly appreciated.
+              </p>
+            </div>
+          </div>
+
+          <!-- Upload Photos (id = 3) -->
+          <div v-else-if="selectedchoicesItem.id === 3">
+            <h2 class="text-xl font-semibold mb-4" style="max-width: 70%; word-wrap: break-word;">
+              {{ selectedchoicesItem.title }}
+            </h2>
+            <p class="text-gray-700">
+              {{ selectedchoicesItem.description }}
+            </p>
+          </div>
+
+          <!-- Close Button -->
+          <button @click="closeModal" class="custom-button2 bg-button2-image">
+            Close
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Vue.js (CDN) -->
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+
+  <!-- Local main.js (Your Vue instance & logic) -->
+  <script src="./js/main.js"></script>
+</body>
+
+</html>

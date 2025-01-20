@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+    <title>T&N Wedding – Invite</title>
+
+    <!-- Normalize CSS (optional) -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
+    />
+
+    <!-- Tailwind + custom styles (same main.css used by your site) -->
+    <link rel="stylesheet" href="../css/main.css" />
+  </head>
+  <body class="bg-cream-100">
+    <!-- Full-screen background -->
+    <div
+      class="w-full min-h-screen bg-no-repeat bg-center"
+      style="background-image: url('../../public/images/background.png');"
+    >
+      <div id="app" class="container mx-auto py-8 bg-contain bg-center h-screen">
+        <!-- Navbar -->
+        <nav class="bg-blue-500 p-4 bg-opacity-0 rounded-lg">
+          <div class="container mx-auto text-center">
+            <h1>Nicki & Tony Are Getting Married</h1>
+            <ul class="flex justify-center">
+              <li class="p2">
+                <a href="../index.html" class="text-gold-500 font-bold"
+                  >Home |</a
+                >
+              </li>
+              <li class="p2">
+                <a href="../pages/location.html" class="text-gold-500 font-bold"
+                  >Location |</a
+                >
+              </li>
+              <li class="p2">
+                <a href="../pages/orderoftheday.html" class="text-gold-500 font-bold"
+                  >Order Of The Day |</a
+                >
+              </li>
+              <li class="p2">
+                <a href="../pages/aboutus.html" class="text-gold-500 font-bold"
+                  >About Us</a
+                >
+              </li>
+            </ul>
+          </div>
+        </nav>
+
+        <!-- Main Content Section -->
+        <div class="grid grid-cols-1 md:grid-cols-1 gap-6 mt-8">
+          <div class="bg-white p-6 bg-opacity-0 text-center mx-auto">
+            <!-- Embedded Google Form (Day Invite) -->
+            <iframe
+              src="https://docs.google.com/forms/d/e/1FAIpQLSd4QCmjI1z1NUWUSOliTXhSJFkDqpxEMHx5pRgvwiT1_UNciQ/viewform?embedded=true"
+              width="640"
+              height="1344"
+              frameborder="0"
+              marginheight="0"
+              marginwidth="0"
+              class="w-full h-[1000px]"
+            >
+              Loading…
+            </iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- (Optional) Vue.js if you need it, otherwise omit -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script> -->
+
+  </body>
+</html>
