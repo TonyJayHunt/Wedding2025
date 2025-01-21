@@ -2,12 +2,13 @@ new Vue({
   el: '#app',
   data() {
     return {
+      // "choices" each with its own unlockDate
       choices: [
         {
           id: 1,
           title: "Invitation and RSVP",
           description: "",
-          unlockDate: "2024-12-01"
+          unlockDate: "2025-06-01"
         },
         {
           id: 2,
@@ -19,15 +20,18 @@ new Vue({
           id: 3,
           title: "Upload Your Photos",
           description: "",
-          unlockDate: "2024-12-01"
+          unlockDate: "2025-06-01"
         }
       ],
+      // RSVP form data
       rsvpform: {
         isModalOpen: false,
         code: ''
       },
+      // Modal control
       showModalFlag: false,
       selectedchoicesItem: {},
+      // Additional modal content
       modalContent: {
         image: '',
         text: '',
@@ -35,27 +39,26 @@ new Vue({
         map: null
       },
       message: "Nicki & Tony's Wedding 2025",
-      showMap: false,
+      showMap: false,  // used if we need a map displayed in modal
       map: null,
 
-      // For invite code logic
+      // Invite code logic
       inviteMessage: "",
       inviteLink: "",
       showInviteResult: false,
-      buttontext: "", // Added so we can set custom button text
+      buttontext: "",
 
-      // Array from Google Sheets
+      // Fetched from Google Sheets
       orderOfTheDay: [],
 
-      // NEW: unlock date for Honeymoon Fund
-      honeymoonUnlockDate: "2025-01-01"
+      // Date controlling the Honeymoon Fund link
+      honeymoonUnlockDate: "2025-08-01"
     };
   },
 
   computed: {
     /**
-     * Return only the choices that are "unlocked" by today's date.
-     * Each choice has its own "unlockDate".
+     * Returns only choices that are unlocked by today's date.
      */
     filteredChoices() {
       const now = new Date();
@@ -67,7 +70,7 @@ new Vue({
     },
 
     /**
-     * Determines if the Honeymoon Fund link in the nav should be visible.
+     * Determines if the Honeymoon Fund link is visible in the navbar.
      */
     isHoneymoonUnlocked() {
       const now = new Date();
@@ -81,6 +84,9 @@ new Vue({
   },
 
   methods: {
+    /**
+     * Parses a gviz/tq date string like "Date(2025,3,1,12,0,0)" into "12:00 PM" etc.
+     */
     parseGvizDate(dateStr) {
       if (typeof dateStr === 'string' && dateStr.startsWith('Date(')) {
         const match = /Date\((\d+),(\d+),(\d+),(\d+),(\d+),(\d+)\)/.exec(dateStr);
@@ -93,12 +99,21 @@ new Vue({
       return dateStr;
     },
 
+    /**
+     * Opens Google Maps at The Green House Hotel.
+     */
     goToGreenHouseHotel() {
-      window.open("http://www.thegreenhousehotel.com/", "_blank");
+      const lat = 50.7193677;
+      const lng = -1.8683981;
+      window.open(`https://maps.google.com/?q=${lat},${lng}`, '_blank');
     },
 
+    /**
+     * Fetch "Order of the Day" data from a public Google Sheet using the gviz/tq endpoint.
+     */
     fetchSheetData() {
-      const sheetUrl = 'https://docs.google.com/spreadsheets/d/1H6-RA-PLdJ3y0rQHHhwRamgSseAr4wIMzVTbRT40WiY/gviz/tq?sheet=<Timeline>';
+      const sheetUrl =
+        'https://docs.google.com/spreadsheets/d/1H6-RA-PLdJ3y0rQHHhwRamgSseAr4wIMzVTbRT40WiY/gviz/tq?sheet=<Timeline>';
 
       fetch(sheetUrl)
         .then(response => response.text())
@@ -119,12 +134,15 @@ new Vue({
         });
     },
 
+    /**
+     * Open the modal for a given choice.
+     */
     showModal(choice) {
       this.showModalFlag = true;
       this.selectedchoicesItem = choice;
       this.message = "Nicki & Tony's Wedding 2025";
 
-      // If RSVP choice, open the RSVP form
+      // If RSVP is chosen (id=1), open RSVP form in the modal
       if (choice.id === 1) {
         this.selectedchoicesItem.message = 'Invite & RSVP';
         this.selectedchoicesItem.text = 'Please enter your code:';
@@ -134,7 +152,7 @@ new Vue({
         this.showMap = false;
       }
 
-      // Reset code + invite message each time the modal opens
+      // Reset code & invite details each time modal opens
       this.rsvpform.code = "";
       this.inviteMessage = "";
       this.inviteLink = "";
@@ -146,6 +164,9 @@ new Vue({
       this.rsvpform.isModalOpen = true;
     },
 
+    /**
+     * Closes the currently open modal and resets relevant data.
+     */
     closeModal() {
       this.showModalFlag = false;
       this.rsvpform.isModalOpen = false;
@@ -155,6 +176,9 @@ new Vue({
       this.showMap = false;
     },
 
+    /**
+     * Handles RSVP code submission (e.g., day vs evening invite).
+     */
     submitForm() {
       const codeValue = this.rsvpform.code.trim().toLowerCase();
 
@@ -167,7 +191,7 @@ Venue: The Green House Hotel - address
 Start Time: Guest Arrival 12.30pm (for 1pm Ceremony)
 Finishing Time: Midnight
 `;
-        this.inviteLink = "./pages/dayinvite.html";
+        this.inviteLink = "./pages/dayinvite.html"; // Link to your day invite form/page
         this.showInviteResult = true;
         this.buttontext = "Click Here To RSVP & Make Menu Choices";
       } else if (codeValue === "n0ch£") {
@@ -179,7 +203,7 @@ Venue: The Green House Hotel - address
 Start Time: Guest Arrival 7pm
 Finishing Time: Midnight
 `;
-        this.inviteLink = "./pages/eveninginvite.html";
+        this.inviteLink = "./pages/eveninginvite.html"; // Link to your evening invite form/page
         this.showInviteResult = true;
         this.buttontext = "Click Here To RSVP";
       } else {
@@ -187,6 +211,9 @@ Finishing Time: Midnight
       }
     },
 
+    /**
+     * Opens the inviteLink in a new tab, then closes the modal.
+     */
     goToInviteLink() {
       window.open(this.inviteLink, '_blank');
       this.closeModal();
