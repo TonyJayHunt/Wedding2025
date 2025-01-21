@@ -32,10 +32,10 @@
               <a href="./pages/orderoftheday.html" class="text-gold-500 font-bold">Order Of The Day |</a>
             </li>
             <li class="p2">
-              <a href="./pages/aboutus.html" class="text-gold-500 font-bold">About Us |</a>
+              <a href="./pages/aboutus.html" class="text-gold-500 font-bold">About Us </a>
             </li>
             <li v-if="isHoneymoonUnlocked" class="p2">
-              <a href="./pages/HoneyMoonFund.html" class="text-gold-500 font-bold">Honeymoon Fund</a>
+              <a href="./pages/HoneyMoonFund.html" class="text-gold-500 font-bold">| Honeymoon Fund</a>
             </li>
           </ul>
         </div>
@@ -143,9 +143,10 @@
             <h2 class="text-xl font-semibold mb-4" style="max-width: 70%; word-wrap: break-word;">
               {{ selectedchoicesItem.title }}
             </h2>
-            <p class="text-gray-700">
-              {{ selectedchoicesItem.description }}
-            </p>
+            <p2>scan or click the QR code to add pictures</p2>
+            <a href="https://photos.app.goo.gl/uYJfYMDtEvunF5157" target="_blank">
+              <img src="../../public/images/googleweddingphotos.png" alt="QR Code" class="mx-auto w-64 h-64" />
+            </a>
           </div>
 
           <!-- Close Button -->
