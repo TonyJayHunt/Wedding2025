@@ -5,6 +5,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Alex+Brush&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Sergio+Trendy&display=swap');
 
+
 /* 2. Animations */
 @keyframes sparkle {
   0% {
@@ -18,7 +19,7 @@
 /* 3. Typography & Shared Styles */
 h1 {
   margin-top: 1vh;
-  font-size: 4.3vw; /* Slightly larger font size */
+  font-size: 4.3vw;
   color: transparent;
   -webkit-text-stroke: 0.1px rgba(206, 130, 16, 0.774);
   background: linear-gradient(45deg, #ffd700, #ffcc00, #ffd700, #ffcc00);
@@ -29,72 +30,45 @@ h1 {
   background-clip: text;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
   text-align: center;
-  height: auto;
 }
 
 h2 {
   font-size: 2.5vw;
   color: black;
-  -webkit-text-stroke: 0.1px rgb(0, 0, 0);
   font-family: 'Sergio Trendy', cursive;
-  animation: sparkle 1.5s infinite linear;
-  -webkit-background-clip: text;
-  background-clip: text;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
   text-align: left;
-  height: auto;
+}
+
+.p1, .p2, .p3 {
+  font-family: 'Sergio Trendy', cursive;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 .p1 {
   font-size: 1.5vw;
-  color: black;
-  -webkit-text-stroke: 0.1px rgb(0, 0, 0);
-  font-family: 'Sergio Trendy', cursive;
-  animation: sparkle 1.5s infinite linear;
-  -webkit-background-clip: text;
-  background-clip: text;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-  height: auto;
 }
 
 .p2 {
   font-size: 1.3vw;
-  -webkit-text-stroke: 0.1px rgb(0, 0, 0);
-  font-family: 'Sergio Trendy', cursive;
-  animation: sparkle 1.5s infinite linear;
-  -webkit-background-clip: text;
-  background-clip: text;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-  height: auto;
 }
 
 .p3 {
   font-size: 0.75vw;
-  color: black;
-  -webkit-text-stroke: 0.1px rgb(0, 0, 0);
-  font-family: 'Sergio Trendy', cursive;
-  animation: sparkle 1.5s infinite linear;
-  -webkit-background-clip: text;
-  background-clip: text;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-  text-align: left;
-  height: auto;
 }
 
 /* 4. Scrollbar Styles */
 .scrollbar::-webkit-scrollbar {
-  width: 1px;
-  border-radius: 1px;
+  width: 8px;
 }
 
 .scrollbar::-webkit-scrollbar-thumb {
   background-color: #4A5568;
-  border-radius: 2px;
+  border-radius: 4px;
 }
 
 .scrollbar::-webkit-scrollbar-track {
   background-color: #CBD5E0;
-  border-radius: 1px;
 }
 
 /* 5. Vue Transition Classes */
@@ -108,18 +82,26 @@ h2 {
   opacity: 0;
 }
 
-/* 6. Responsiveness */
+/* 6. Responsive Design Fix */
 @media (max-width: 715px) {
   #app {
     background-size: auto auto;
   }
+
+  h1 {
+    font-size: 6vw;
+  }
+
+  h2 {
+    font-size: 4vw;
+  }
 }
 
-/* 7. Modal Classes */
+/* 7. Modal Styles */
 .modal {
   display: none;
   position: fixed;
-  z-index: 1;
+  z-index: 1000;
   left: 0;
   top: 0;
   width: 100%;
@@ -142,78 +124,137 @@ h2 {
   font-weight: bold;
 }
 
-.close:hover,
-.close:focus {
+.close:hover {
   color: black;
-  text-decoration: none;
   cursor: pointer;
 }
 
 /* 8. Custom Button Styles */
 .custom-button {
   width: 50%;
-  height: 5vw;
-  border-radius: 2.5vw;
-  font-size: 1vw;
+  padding: 1rem;
+  border-radius: 2.5rem;
+  font-size: 1rem;
   font-weight: bold;
-  color: #000;
   text-align: center;
-  display: inline-block;
   cursor: pointer;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  transition: transform 0.2s ease-in-out,
-              background-image 0.2s ease-in-out,
-              color 0.2s ease-in-out; 
-  border: 2px solid black; /* Black border */
-  margin-bottom: 1vh;
+  transition: transform 0.2s ease-in-out, background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+  background-color: #FFD700;
+  border: 2px solid black;
 }
 
 .custom-button:hover {
   transform: scale(1.05);
-  background-image: url('../../public/images/red-background-image.jpg');
-  color: white; /* Change text color to white on hover */
+  background-color: #FF4500;
+  background-image: url('../public/images/red-background-image.jpg');
+  color: white;
 }
 
-/* Use this class if you want a default gold background on the button */
+/* For buttons with background images */
 .bg-button-image {
-  background-image: url('../../public/images/gold-background-image.jpg');
+  background-image: url('../public/images/gold-background-image.jpg');
   background-size: cover;
   background-position: center;
 }
 
 .custom-button2 {
-  display: inline-block;
-  /* Remove fixed width/height; let text define size */
-  /* Add some padding for spacing around text */
   padding: 0.5rem 1rem;
-
-  border: 2px solid black; /* Black border */
-  border-radius: 2rem;     /* Or any radius you prefer */
-  font-size: 1rem;         /* Adjust as needed */
+  border-radius: 1.5rem;
+  font-size: 1rem;
   font-weight: bold;
-  color: #000;
   text-align: center;
   cursor: pointer;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-
-  margin-bottom: 1vh;
-
-  /* Hover transition settings */
-  transition: transform 0.2s ease-in-out,
-              background-image 0.2s ease-in-out,
-              color 0.2s ease-in-out;
+  transition: transform 0.2s ease-in-out, background-color 0.2s ease-in-out;
+  background-color: #FFD700;
+  border: 2px solid black;
 }
 
-/* Hover */
 .custom-button2:hover {
   transform: scale(1.05);
-  background-image: url('../../public/images/red-background-image.jpg');
-  color: white; /* Change text color to white on hover */
+  background-color: #FF4500;
+  background-image: url('../public/images/red-background-image.jpg');
+  color: white;
 }
 
-/* Default gold background */
+/* Gold button background */
 .bg-button2-image {
-  background-image: url('../../public/images/gold-background-image.jpg');
+  background-image: url('../public/images/gold-background-image.jpg');
   background-size: cover;
   background-position: center;
+}
+
+/* Countdown Styling */
+
+/* Countdown Section Title */
+.ticker-title {
+  font-family: 'Alex Brush', cursive;
+  color: #d4a017;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);
+}
+
+/* Ticker Container */
+.ticker-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  padding: 1rem;
+  flex-wrap: wrap;
+}
+
+/* Individual Ticker Item */
+.ticker-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem;
+  background-color: #fef3c7;
+  border: 2px solid #d4a017;
+  border-radius: 10px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+  min-width: 100px;
+}
+
+/* Countdown Numbers */
+.ticker-number {
+  font-size: 3rem;
+  font-weight: bold;
+  color: #b45309;
+  animation: pulse 1s infinite ease-in-out;
+}
+
+.ticker-label {
+  font-size: 1.2rem;
+  color: #4a5568;
+}
+
+/* Animation for Countdown Numbers */
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+}
+
+/* Responsive Countdown Adjustments */
+@media (max-width: 768px) {
+  .ticker-container {
+    gap: 1rem;
+  }
+
+  .ticker-item {
+    min-width: 80px;
+  }
+
+  .ticker-number {
+    font-size: 2rem;
+  }
+
+  .ticker-label {
+    font-size: 1rem;
+  }
 }

@@ -24,19 +24,31 @@
       <nav class="bg-blue-500 p-4 mb-6 bg-opacity-0 rounded-lg">
         <div class="container mx-auto text-center">
           <h1>Nicki & Tony Are Getting Married</h1>
-          <ul class="flex justify-center">
+          <ul class="flex justify-center items-center">
+      
+            <!-- Location -->
             <li class="p2">
-              <a href="./pages/location.html" class="text-gold-500 font-bold">Location |</a>
+              <a href="./pages/location.html" class="text-gold-500 font-bold">Location</a>
             </li>
+            <li class="p2 px-2">|</li>
+      
+            <!-- Order Of The Day -->
             <li class="p2">
-              <a href="./pages/orderoftheday.html" class="text-gold-500 font-bold">Order Of The Day |</a>
+              <a href="./pages/orderoftheday.html" class="text-gold-500 font-bold">Order Of The Day</a>
             </li>
+            <li class="p2 px-2">|</li>
+      
+            <!-- About Us -->
             <li class="p2">
-              <a href="./pages/aboutus.html" class="text-gold-500 font-bold">About Us </a>
+              <a href="./pages/aboutus.html" class="text-gold-500 font-bold">About Us</a>
             </li>
-            <li v-if="isHoneymoonUnlocked" class="p2">
-              <a href="./pages/HoneyMoonFund.html" class="text-gold-500 font-bold">| Honeymoon Fund</a>
+      
+            <!-- Only show separator + link if honeymoon is unlocked -->
+            <li class="p2 px-2" v-if="isHoneymoonUnlocked">|</li>
+            <li class="p2" v-if="isHoneymoonUnlocked">
+              <a href="./pages/HoneyMoonFund.html" class="text-gold-500 font-bold">Honeymoon Fund</a>
             </li>
+      
           </ul>
         </div>
       </nav>

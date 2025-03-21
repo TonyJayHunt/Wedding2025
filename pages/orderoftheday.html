@@ -21,19 +21,31 @@
       <nav class="bg-blue-500 p-4 bg-opacity-0 rounded-lg">
         <div class="container mx-auto text-center">
           <h1>Order of the Day</h1>
-          <ul class="flex justify-center">
+          <ul class="flex justify-center items-center">
+            
+            <!-- Home -->
             <li class="p2">
-              <a href="../index.html" class="text-gold-500 font-bold">Home |</a>
+              <a href="../index.html" class="text-gold-500 font-bold">Home</a>
             </li>
+            <li class="p2 px-2">|</li>
+      
+            <!-- Location -->
             <li class="p2">
-              <a href="./location.html" class="text-gold-500 font-bold">Location |</a>
+              <a href="./location.html" class="text-gold-500 font-bold">Location</a>
             </li>
+            <li class="p2 px-2">|</li>
+      
+            <!-- About Us -->
             <li class="p2">
-              <a href="./aboutus.html" class="text-gold-500 font-bold">About Us </a>
+              <a href="./aboutus.html" class="text-gold-500 font-bold">About Us</a>
             </li>
+            <li class="p2 px-2" v-if="isHoneymoonUnlocked">|</li>
+      
+            <!-- Honeymoon Fund (only visible if unlocked) -->
             <li v-if="isHoneymoonUnlocked" class="p2">
-              <a href="./HoneyMoonFund.html" class="text-gold-500 font-bold">| Honeymoon Fund</a>
+              <a href="./HoneyMoonFund.html" class="text-gold-500 font-bold">Honeymoon Fund</a>
             </li>
+      
           </ul>
         </div>
       </nav>

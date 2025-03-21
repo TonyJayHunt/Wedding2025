@@ -8,7 +8,7 @@ new Vue({
           id: 1,
           title: "Invitation and RSVP",
           description: "",
-          unlockDate: "2025-06-01"
+          unlockDate: "2025-03-19"
         },
         {
           id: 2,
@@ -20,7 +20,7 @@ new Vue({
           id: 3,
           title: "Upload Your Photos",
           description: "",
-          unlockDate: "2025-06-01"
+          unlockDate: "2025-12-10"
         }
       ],
       // RSVP form data
@@ -41,14 +41,24 @@ new Vue({
       message: "Nicki & Tony's Wedding 2025",
       showMap: false,  // used if we need a map displayed in modal
       map: null,
-
+      menuOpen: false,
       // Invite code logic
       inviteMessage: "",
       inviteLink: "",
       showInviteResult: false,
       buttontext: "",
 
-      // Fetched from Google Sheets
+      // Countdown logic
+      weddingDate: new Date('2025-12-13T00:00:00'),
+      countdown: {
+        months: 0,
+        weeks: 0,
+        days: 0,
+        hours: 0,
+        minutes: 0,
+        seconds: 0
+      },
+      isWeddingPassed: false,
       orderOfTheDay: [],
 
       // Date controlling the Honeymoon Fund link
@@ -81,9 +91,80 @@ new Vue({
 
   created() {
     this.fetchSheetData();
+    this.updateCountdown();
+    setInterval(this.updateCountdown, 1000);
   },
 
   methods: {
+    /**
+     * Countdown logic for wedding and anniversary.
+     */
+    updateCountdown() {
+      const now = new Date();
+      let targetDate = this.weddingDate;
+
+      // If the wedding has passed, switch to the next anniversary countdown
+      if (now >= this.weddingDate) {
+        this.isWeddingPassed = true;
+        targetDate = new Date(this.weddingDate);
+        targetDate.setFullYear(now.getFullYear() + 1);
+      }
+
+      const timeDifference = targetDate - now;
+      this.calculateTimeUnits(timeDifference);
+    },
+
+    calculateTimeUnits(timeDifference) {
+      const months = Math.floor(timeDifference / (1000 * 60 * 60 * 24 * 30));
+      const weeks = Math.floor((timeDifference % (1000 * 60 * 60 * 24 * 30)) / (1000 * 60 * 60 * 24 * 7));
+      const days = Math.floor((timeDifference % (1000 * 60 * 60 * 24 * 7)) / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
+
+      this.countdown = { months, weeks, days, hours, minutes, seconds };
+    },
+
+    /**
+     * Fetch "Order of the Day" data from a public Google Sheet using the gviz/tq endpoint.
+     */
+    fetchSheetData() {
+      const sheetUrl =
+        'https://docs.google.com/spreadsheets/d/e/2PACX-1vT2-oR8lC1tQV_Sp6mIADNqBnN5sdI6Th_kBEjDTysxgJ9x0NwnIiu48JZ2Xnfs4pAagPulWBSHnww1/pub?gid=0&single=true&output=csv';
+
+        fetch(sheetUrl)
+        .then(response => response.text())
+        .then(csvData => {
+          // Split the CSV into lines
+          const lines = csvData.trim().split('\n');
+    
+          // Optional: if the first line is a header, remove it
+          // e.g. if header is "time,activity"
+          lines.shift();
+    
+          // Now parse each line
+          const result = lines.map(line => {
+            // Split columns by comma
+            const [timeValue, activityValue] = line.split(',');
+    
+            // If you *still* need to parse a Date(...) string,
+            // you can call your parseGvizDate function. Otherwise,
+            // you can just store the raw string.
+    
+            return {
+              time: timeValue,      // or: time: this.parseGvizDate(timeValue)
+              activity: activityValue
+            };
+          });
+    
+          // Assign to your component data
+          this.orderOfTheDay = result;
+        })
+        .catch(err => {
+          console.error('Error fetching Google Sheet data:', err);
+        });
+    },
+
     /**
      * Parses a gviz/tq date string like "Date(2025,3,1,12,0,0)" into "12:00 PM" etc.
      */
@@ -100,41 +181,6 @@ new Vue({
     },
 
     /**
-     * Opens Google Maps at The Green House Hotel.
-     */
-    goToGreenHouseHotel() {
-      const lat = 50.7193677;
-      const lng = -1.8683981;
-      window.open(`https://maps.google.com/?q=${lat},${lng}`, '_blank');
-    },
-
-    /**
-     * Fetch "Order of the Day" data from a public Google Sheet using the gviz/tq endpoint.
-     */
-    fetchSheetData() {
-      const sheetUrl =
-        'https://docs.google.com/spreadsheets/d/1H6-RA-PLdJ3y0rQHHhwRamgSseAr4wIMzVTbRT40WiY/gviz/tq?sheet=<Timeline>';
-
-      fetch(sheetUrl)
-        .then(response => response.text())
-        .then(data => {
-          const jsonData = JSON.parse(data.substr(47).slice(0, -2));
-          const rows = jsonData.table.rows;
-          const result = rows.map(row => {
-            const rawTime = row.c[0]?.v || '';
-            return {
-              time: this.parseGvizDate(rawTime),
-              activity: row.c[1]?.v || ''
-            };
-          });
-          this.orderOfTheDay = result;
-        })
-        .catch(err => {
-          console.error('Error fetching Google Sheet data:', err);
-        });
-    },
-
-    /**
      * Open the modal for a given choice.
      */
     showModal(choice) {
@@ -146,10 +192,6 @@ new Vue({
       if (choice.id === 1) {
         this.selectedchoicesItem.message = 'Invite & RSVP';
         this.selectedchoicesItem.text = 'Please enter your code:';
-        this.openRSVPModal();
-        this.showMap = true;
-      } else {
-        this.showMap = false;
       }
 
       // Reset code & invite details each time modal opens
@@ -160,22 +202,6 @@ new Vue({
       this.buttontext = "";
     },
 
-    openRSVPModal() {
-      this.rsvpform.isModalOpen = true;
-    },
-
-    /**
-     * Closes the currently open modal and resets relevant data.
-     */
-    closeModal() {
-      this.showModalFlag = false;
-      this.rsvpform.isModalOpen = false;
-      this.selectedchoicesItem = {};
-      this.modalContent = { image: '', text: '', message: '', map: null };
-      this.message = "Nicki & Tony's Wedding 2025";
-      this.showMap = false;
-    },
-
     /**
      * Handles RSVP code submission (e.g., day vs evening invite).
      */
@@ -183,27 +209,23 @@ new Vue({
       const codeValue = this.rsvpform.code.trim().toLowerCase();
 
       if (codeValue === "j0u?") {
-        // Day invite
-        this.inviteMessage = `Nicki and Tony are delighted to invite you to celebrate their wedding day with them:
-
-Date: 13th December 2025
-Venue: The Green House Hotel - address
-Start Time: Guest Arrival 12.30pm (for 1pm Ceremony)
-Finishing Time: Midnight
-`;
-        this.inviteLink = "./pages/dayinvite.html"; // Link to your day invite form/page
+        this.inviteMessage = `Nicki and Tony are delighted to invite you and a guest to their wedding day.`;
+        this.inviteLink = "https://forms.gle/m8EH99vdze6rRAZp6"; 
         this.showInviteResult = true;
         this.buttontext = "Click Here To RSVP & Make Menu Choices";
       } else if (codeValue === "n0ch£") {
-        // Evening invite
-        this.inviteMessage = `Nicki and Tony are delighted to invite you to celebrate the Evening Reception of their wedding day with them:
-
-Date: 13th December 2025
-Venue: The Green House Hotel - address
-Start Time: Guest Arrival 7pm
-Finishing Time: Midnight
-`;
-        this.inviteLink = "./pages/eveninginvite.html"; // Link to your evening invite form/page
+        this.inviteMessage = `Nicki and Tony are delighted to invite you and a guest to their evening reception.`;
+        this.inviteLink = "https://forms.gle/PiYArfnSjdbsec5j9"; 
+        this.showInviteResult = true;
+        this.buttontext = "Click Here To RSVP";
+      } else if (codeValue === "d1wrnodpr!od@ss3ngl") {
+        this.inviteMessage = `Nicki and Tony are delighted to invite you to their wedding day.`;
+        this.inviteLink = "https://forms.gle/DunbW6q3PdgfFvai8"; 
+        this.showInviteResult = true;
+        this.buttontext = "Click Here To RSVP";
+      } else if (codeValue === "n0s0nbr!od@ss3ngl") {
+        this.inviteMessage = `Nicki and Tony are delighted to invite you to their evening reception.`;
+        this.inviteLink = "https://forms.gle/9tK2kMG1rV4Tf6WP8"; 
         this.showInviteResult = true;
         this.buttontext = "Click Here To RSVP";
       } else {
@@ -211,12 +233,13 @@ Finishing Time: Midnight
       }
     },
 
-    /**
-     * Opens the inviteLink in a new tab, then closes the modal.
-     */
     goToInviteLink() {
       window.open(this.inviteLink, '_blank');
       this.closeModal();
+    },
+
+    closeModal() {
+      this.showModalFlag = false;
     }
   }
 });
