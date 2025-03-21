@@ -20,7 +20,7 @@ new Vue({
           id: 3,
           title: "Upload Your Photos",
           description: "",
-          unlockDate: "2025-12-10"
+          unlockDate: "2025-06-10"
         }
       ],
       // RSVP form data
@@ -62,7 +62,7 @@ new Vue({
       orderOfTheDay: [],
 
       // Date controlling the Honeymoon Fund link
-      honeymoonUnlockDate: "2025-08-01"
+      honeymoonUnlockDate: "2025-03-01"
     };
   },
 
