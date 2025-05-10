@@ -25,30 +25,25 @@
         <div class="container mx-auto text-center">
           <h1>Nicki & Tony Are Getting Married</h1>
           <ul class="flex justify-center items-center">
-      
             <!-- Location -->
             <li class="p2">
               <a href="./pages/location.html" class="text-gold-500 font-bold">Location</a>
             </li>
             <li class="p2 px-2">|</li>
-      
             <!-- Order Of The Day -->
             <li class="p2">
               <a href="./pages/orderoftheday.html" class="text-gold-500 font-bold">Order Of The Day</a>
             </li>
             <li class="p2 px-2">|</li>
-      
             <!-- About Us -->
             <li class="p2">
               <a href="./pages/aboutus.html" class="text-gold-500 font-bold">About Us</a>
             </li>
-      
             <!-- Only show separator + link if honeymoon is unlocked -->
             <li class="p2 px-2" v-if="isHoneymoonUnlocked">|</li>
             <li class="p2" v-if="isHoneymoonUnlocked">
               <a href="./pages/HoneyMoonFund.html" class="text-gold-500 font-bold">Honeymoon Fund</a>
             </li>
-      
           </ul>
         </div>
       </nav>
@@ -118,45 +113,52 @@
                 {{ selectedchoicesItem.title }}
               </h2>
               <p class="text-gray-700 break-words mb-4">
-                <b>Invitation details</b><br/>
-                <ul>
+                <b>Invitation details</b><br />
+              <ul>
+                <li><b>Do I get a plus one?</b> </li>
                 <li>Your invite is for those <u>named</u> in your invite message.</li>
-                <li><b>Do I get a plus one?</b> This will be indicated if we have allocated you a ‘plus one’ in your message invite. We hope you will understand that due to the limits of our venue, unless we have specified you have a plus one, then we are sadly unable to accommodate one.</li>
-                <li><b>Can I bring children?</b> Kindly note, this will be an adult-only event.</li>
+                <li>This will be indicated if we have allocated you a ‘plus one’ in your message invite. We hope you
+                  will understand that due to the limits of our venue, unless we have specified you have a plus one,
+                  then we are sadly unable to accommodate one.</li>
+                <li><b>Can I bring children?</b></li>
+                <li>Kindly note, this will be an adult-only event.</li>
               </ul>
+              <br>
               </p>
               <p class="text-gray-700 break-words mb-4">
-                <b>Day Information</b><br/>
-              </p>
-              <p class="text-gray-700 break-words mb-4">
-                <b>Drinks:</b> Sadly it is not an open bar. You will receive a drink after
-                the ceremony, during the drinks reception. There will also be wine provided
-                during the wedding breakfast. There will also be opportunities during the
-                day to collect a couple of drinks tokens that guests can use at the bar.
-              </p>
-              <p class="text-gray-700 break-words mb-4">
-                <b>Dress Code:</b> This is a wedding, and it’s Christmas, who needs a better
-                reason to dress up. Our vision is; Elegance at Christmas, sparkly but classy.
-                Please no Christmas jumpers!
-              </p>
-              <p class="text-gray-700 break-words">
-                <b>Location:</b> The Ceremony, Wedding Breakfast and Evening Reception
-                are all being held at
-                <a href="http://www.thegreenhousehotel.com/" target="_blank">The Green House Hotel.</a>
-              </p>
-              <p class="text-gray-700 break-words mb-4">
-                <b>Parking:</b> Parking details can also be found on the <a href="./pages/location.html"
-                  target="_blank">‘location’</a> tab from our website.
-              </p>
-              <p class="text-gray-700 break-words mb-4">
-                <b>Accommodation:</b> Some rooms are available at <a href="http://www.thegreenhousehotel.com/"
-                  target="_blank">The Green House Hotel.</a>. Please enquire with them directly . For additional
-                options, there are many nearby hotels.
-              </p>
-              <p class="text-gray-700 break-words mb-4">
-                <b>Gifts:</b> Your presence at our wedding is the greatest gift you could give us! No gifts are
-                expected, but if you’d like, a contribution towards our <a href="./pages/HoneyMoonFund.html"
-                  target="_blank">honeymoon fund</a> would be truly appreciated.
+                <b>Day Information</b><br />
+              <ul>
+                <li><b>What time do I need to arrive?</b></li>
+                <li>If you are joining us for the whole day we reccomend about 12:30pm, and just for the evening then
+                  arrive from 6:30pm onwards
+                  for a full breakdown of the day please refer to the <a href="./pages/orderoftheday.html"
+                    target="_blank">‘Order Of The Day’</a></li>
+                <li><b>Drinks:</b></li>
+                <li> it is not an open bar. You will receive a drink after
+                  the ceremony, during the drinks reception. There will also be wine provided
+                  during the wedding breakfast. There will also be opportunities during the
+                  day to collect a couple of drinks tokens that guests can use at the bar.</li>
+                <li><b>Dress Code:</b></li>
+                <li>This is a wedding, and it’s Christmas, who needs a better
+                  reason to dress up. Our vision is; Elegance at Christmas, sparkly but classy.
+                  Please no Christmas jumpers!</li>
+                <li><b>Location:</b></li>
+                <li>The Ceremony, Wedding Breakfast and Evening Reception
+                  are all being held at
+                  <a href="http://www.thegreenhousehotel.com/" target="_blank">The Green House Hotel.</a>
+                </li>
+                <li><b>Parking:</b></li>
+                <li>Parking details can also be found on the <a href="./pages/location.html"
+                    target="_blank">‘location’</a> tab from our website.</li>
+                <li><b>Accommodation:</b></li>
+                <li>Some rooms are available at <a href="http://www.thegreenhousehotel.com/" target="_blank">The Green
+                    House Hotel.</a>. Please enquire with them directly . For additional
+                  options, there are many nearby hotels.</li>
+                <li><b>Gifts:</b></li>
+                <li>Your presence at our wedding is the greatest gift you could give us! No gifts are
+                  expected, but if you’d like, a contribution towards our <a href="./pages/HoneyMoonFund.html"
+                    target="_blank">honeymoon fund</a> would be truly appreciated.</li>
+              </ul>
               </p>
             </div>
           </div>

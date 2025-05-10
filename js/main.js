@@ -47,18 +47,6 @@ new Vue({
       inviteLink: "",
       showInviteResult: false,
       buttontext: "",
-
-      // Countdown logic
-      weddingDate: new Date('2025-12-13T00:00:00'),
-      countdown: {
-        months: 0,
-        weeks: 0,
-        days: 0,
-        hours: 0,
-        minutes: 0,
-        seconds: 0
-      },
-      isWeddingPassed: false,
       orderOfTheDay: [],
 
       // Date controlling the Honeymoon Fund link
@@ -91,40 +79,9 @@ new Vue({
 
   created() {
     this.fetchSheetData();
-    this.updateCountdown();
-    setInterval(this.updateCountdown, 1000);
   },
 
   methods: {
-    /**
-     * Countdown logic for wedding and anniversary.
-     */
-    updateCountdown() {
-      const now = new Date();
-      let targetDate = this.weddingDate;
-
-      // If the wedding has passed, switch to the next anniversary countdown
-      if (now >= this.weddingDate) {
-        this.isWeddingPassed = true;
-        targetDate = new Date(this.weddingDate);
-        targetDate.setFullYear(now.getFullYear() + 1);
-      }
-
-      const timeDifference = targetDate - now;
-      this.calculateTimeUnits(timeDifference);
-    },
-
-    calculateTimeUnits(timeDifference) {
-      const months = Math.floor(timeDifference / (1000 * 60 * 60 * 24 * 30));
-      const weeks = Math.floor((timeDifference % (1000 * 60 * 60 * 24 * 30)) / (1000 * 60 * 60 * 24 * 7));
-      const days = Math.floor((timeDifference % (1000 * 60 * 60 * 24 * 7)) / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
-
-      this.countdown = { months, weeks, days, hours, minutes, seconds };
-    },
-
     /**
      * Fetch "Order of the Day" data from a public Google Sheet using the gviz/tq endpoint.
      */
