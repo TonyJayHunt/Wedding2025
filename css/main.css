@@ -185,3 +185,12 @@ h2 {
   background-position: center;
 }
 
+
+
+/* === Responsive Typography & Utilities (added May 2025) === */
+h1{font-size:clamp(2.25rem,6vw + .5rem,4rem);}
+h2{font-size:clamp(1.5rem,4vw + .5rem,2.5rem);}
+.p1{font-size:clamp(1.1rem,2.7vw + .3rem,1.4rem);}
+.p2{font-size:clamp(.95rem,2.1vw + .25rem,1.2rem);}
+.p3{font-size:clamp(.8rem,1.5vw + .2rem,1rem);}
+img.responsive-img{width:100%;height:auto;object-fit:cover;}

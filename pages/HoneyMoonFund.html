@@ -18,41 +18,29 @@
     style="background-image: url('../../public/images/background.png');">
     <div id="app" class="container mx-auto py-8 bg-contain bg-center bg-no-repeat h-screen">
       <!-- Navbar -->
-      <nav class="bg-blue-500 p-4 mb-6 bg-opacity-0 rounded-lg">
-        <div class="container mx-auto text-center">
-          <h1>Honeymoon Fund</h1>
-          <ul class="flex justify-center items-center">
-            <!-- Home -->
-            <li class="p2">
-              <a href="../index.html" class="text-gold-500 font-bold">Home</a>
-            </li>
-            <li class="p2 px-2">|</li>
-      
-            <!-- Location -->
-            <li class="p2">
-              <a href="./location.html" class="text-gold-500 font-bold">Location</a>
-            </li>
-            <li class="p2 px-2">|</li>
-      
-            <!-- Order Of The Day -->
-            <li class="p2">
-              <a href="./orderoftheday.html" class="text-gold-500 font-bold">Order Of The Day</a>
-            </li>
-            <li class="p2 px-2">|</li>
-      
-            <!-- About Us -->
-            <li class="p2">
-              <a href="./aboutus.html" class="text-gold-500 font-bold">About Us</a>
-            </li>
-          </ul>
-        </div>
-      </nav>
+      <nav class="bg-opacity-0 p-4">
+  <div class="container mx-auto flex items-center justify-between">
+    <h1 class="flex-1 text-center md:text-left leading-tight">Honeymoon&nbsp;Fund</h1>
+    <button id="nav-toggle" class="md:hidden p-2 rounded focus:outline-none">
+      <svg class="w-8 h-8 text-gold-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
+      </svg>
+    </button>
+  </div>
+
+  <ul id="nav-menu" class="hidden flex-col md:flex md:flex-row md:justify-center text-center space-y-4 md:space-y-0 md:space-x-4 mt-4 md:mt-0">
+<li><a href="../index.html" class="text-gold-500 font-bold">Home</a></li>
+<li><a href="./location.html" class="text-gold-500 font-bold">Location</a></li>
+<li><a href="./orderoftheday.html" class="text-gold-500 font-bold">Order Of The Day</a></li>
+<li><a href="./aboutus.html" class="text-gold-500 font-bold">About Us</a></li>
+  </ul>
+</nav>
 
       <!-- Content Section: Centered, minimal width table -->
       <div class="bg-white p-6 bg-opacity-0 mx-auto text-center">
         <!-- Note above the image -->
         <p class="mb-4 text-lg font-semibold">Please click the button or follow the QR code</p>
-        <p class="mb-4 text-lg ">Please note if you dont want to pay additional charges select "Don't Support Collctiv" on the dropdown</p>
+        <p class="mb-4 text-lg ">Please note if you don't want to pay additional charges select "Don't Support Collctiv" on the dropdown</p>
 
         <div class="overflow-x-auto">
           <!-- Button linking to a website -->
@@ -76,7 +64,8 @@
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
 
     <!-- Main JS (combined logic with parseGvizDate) -->
-    <script src="../js/main.js"></script>
+    <script src="../js/main.js"></script>  <script src="../js/nav.js"></script>
+
 </body>
 
 </html>

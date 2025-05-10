@@ -20,35 +20,23 @@
     style="background-image: url('../../public/images/background.png');">
     <div id="app" class="container mx-auto py-8 bg-contain bg-center bg-no-repeat h-screen">
       <!-- Navbar -->
-      <nav class="bg-blue-500 p-4 mb-6 bg-opacity-0 rounded-lg">
-        <div class="container mx-auto text-center">
-          <h1>Wedding Location</h1>
-          <ul class="flex justify-center items-center">
-            <!-- Home -->
-            <li class="p2">
-              <a href="../index.html" class="text-gold-500 font-bold">Home</a>
-            </li>
-            <li class="p2 px-2">|</li>
-      
-            <!-- Order Of The Day -->
-            <li class="p2">
-              <a href="./orderoftheday.html" class="text-gold-500 font-bold">Order Of The Day</a>
-            </li>
-            <li class="p2 px-2">|</li>
-      
-            <!-- About Us -->
-            <li class="p2">
-              <a href="./aboutus.html" class="text-gold-500 font-bold">About Us</a>
-            </li>
-      
-            <!-- Honeymoon Fund (only show separator + link if unlocked) -->
-            <li class="p2 px-2" v-if="isHoneymoonUnlocked">|</li>
-            <li class="p2" v-if="isHoneymoonUnlocked">
-              <a href="./HoneyMoonFund.html" class="text-gold-500 font-bold">Honeymoon Fund</a>
-            </li>
-          </ul>
-        </div>
-      </nav>
+      <nav class="bg-opacity-0 p-4">
+  <div class="container mx-auto flex items-center justify-between">
+    <h1 class="flex-1 text-center md:text-left leading-tight">Wedding&nbsp;Location</h1>
+    <button id="nav-toggle" class="md:hidden p-2 rounded focus:outline-none">
+      <svg class="w-8 h-8 text-gold-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
+      </svg>
+    </button>
+  </div>
+
+  <ul id="nav-menu" class="hidden flex-col md:flex md:flex-row md:justify-center text-center space-y-4 md:space-y-0 md:space-x-4 mt-4 md:mt-0">
+<li><a href="../index.html" class="text-gold-500 font-bold">Home</a></li>
+<li><a href="./orderoftheday.html" class="text-gold-500 font-bold">Order Of The Day</a></li>
+<li><a href="./aboutus.html" class="text-gold-500 font-bold">About Us</a></li>
+<li v-if="isHoneymoonUnlocked"><a href="./HoneyMoonFund.html" class="text-gold-500 font-bold">Honeymoon Fund</a></li>
+  </ul>
+</nav>
 
       <!-- Content Section -->
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -85,7 +73,8 @@
     <!-- Adjust path if your script is named differently or in another folder -->
     <script src="../js/main.js"></script>
 
-    <script src="../js/map_script.js"></script>
+    <script src="../js/map_script.js"></script>  <script src="../js/nav.js"></script>
+
 </body>
 
 </html>
