@@ -16,7 +16,8 @@ document.addEventListener('DOMContentLoaded', () => {
   if (btn && menu) {
     updateNavExtra();                         // run once on load
     btn.addEventListener('click', () => {
-      menu.classList.toggle('open');          // ↩ show / hide drawer
+      menu.classList.toggle('open');   // slide-down drawer (our new class)
+      menu.classList.toggle('hidden'); // secondary guard: hide when closed
     });
     window.addEventListener('resize', updateNavExtra);
   }

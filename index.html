@@ -22,7 +22,10 @@
       <!-- Navbar -->
       <nav class="nav-fixed bg-opacity-0 p-4">
         <div class="container mx-auto flex items-center justify-between">
-          <h1 class="flex-1 text-center md:text-left leading-tight">Nicki &amp; Tony&nbsp;Are&nbsp;Getting&nbsp;Married
+          <h1 class="flex-1 text-center md:text-left leading-tight">
+            Nicki&nbsp;&amp;&nbsp;Tony
+            <br class="md:hidden"> <!-- shows only on screens < md -->
+            <span class="md:inline-block">Are&nbsp;Getting&nbsp;Married</span>
           </h1>
           <button id="nav-toggle" class="md:hidden p-2 rounded focus:outline-none">
             <svg class="w-8 h-8 text-gold-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
@@ -32,7 +35,7 @@
         </div>
 
         <ul id="nav-menu"
-          class="hidden flex-col md:flex md:flex-row md:justify-center text-center space-y-4 md:space-y-0 md:space-x-4 mt-4 md:mt-0">
+          class="flex-col md:flex md:flex-row md:justify-center text-center space-y-4 md:space-y-0 md:space-x-4 mt-4 md:mt-0">
           <li><a href="./pages/location.html" class="text-gold-500 font-bold">Location</a></li>
           <li><a href="./pages/orderoftheday.html" class="text-gold-500 font-bold">Order Of The Day</a></li>
           <li><a href="./pages/aboutus.html" class="text-gold-500 font-bold">About Us</a></li>
@@ -58,7 +61,7 @@
 
         <!-- Right Sidebar: Main Content with Vue Loop -->
         <div class="bg-white p-6 bg-opacity-0">
-          <h1><br/></h1>
+          <h1><br /></h1>
           <!-- Only show "unlocked" choices -->
           <div v-for="choice in filteredChoices" :key="choice.id" class="flex flex-col items-center">
             <button @click="showModal(choice)" class="custom-button bg-button-image">
