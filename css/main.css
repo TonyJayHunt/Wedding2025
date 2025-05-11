@@ -1,311 +1,412 @@
-/* main.css */
-
-/* 1. Tailwind & Font Imports */
+/*───────────────────────────────────────────────────────────────────┐
+│  0. Vendor & Font imports                                         │
+└───────────────────────────────────────────────────────────────────*/
 @import url('https://cdn.jsdelivr.net/npm/tailwindcss@2.2.16/dist/tailwind.min.css');
 @import url('https://fonts.googleapis.com/css2?family=Alex+Brush&display=swap');
 
+/*───────────────────────────────────────────────────────────────────┐
+│  1. Global variables & helpers                                    │
+│     --nav-h      : base navbar height (auto-tweaks for desktop)   │
+│     --nav-extra  : open-burger extra height (set in nav.js)       │
+└───────────────────────────────────────────────────────────────────*/
+:root {
+  --nav-h: 60px;
+  --nav-extra: 0px;
+}
 
-/* 2. Animations */
-@keyframes sparkle {
-  0% {
-    background-position: 0% 50%;
-  }
-  100% {
-    background-position: 100% 50%;
+@media (min-width:768px) {
+  :root {
+    --nav-h: 72px;
   }
 }
 
-/* 3. Typography & Shared Styles */
+/*───────────────────────────────────────────────────────────────────┐
+│  2. Fixed viewport background (detached from app boxes)           │
+└───────────────────────────────────────────────────────────────────*/
+body {
+  min-height: 100dvh;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background: url("../public/images/background.png") center/cover no-repeat;
+}
+
+@supports (background-image: image-set(url("../public/images/background-mobile-640.png") 1x)) {
+  body::before {
+    background-image: image-set(url("../public/images/background-mobile-640.png") 1x,
+        url("../public/images/background-tablet-1024.png") 1.5x,
+        url("../public/images/background.png") 2x,
+        url("../public/images/background-original.png") 3x);
+  }
+}
+
+/*───────────────────────────────────────────────────────────────────┐
+│  3. Typography (clamp keeps it fluid)                             │
+└───────────────────────────────────────────────────────────────────*/
 h1 {
   margin-top: 1vh;
-  font-size: 4.3vw;
+  font-size: clamp(2.25rem, 6vw + .5rem, 4rem);
+  font-family: 'Alex Brush', cursive;
   color: transparent;
-  -webkit-text-stroke: 0.1px rgba(206, 130, 16, 0.774);
+  -webkit-text-stroke: .1px rgba(206, 130, 16, .8);
   background: linear-gradient(45deg, #ffd700, #ffcc00, #ffd700, #ffcc00);
   background-size: 400% 400%;
-  font-family: 'Alex Brush', cursive;
-  animation: sparkle 1.5s infinite linear;
   -webkit-background-clip: text;
   background-clip: text;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  animation: sparkle 1.5s infinite linear;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, .5);
   text-align: center;
 }
 
 h2 {
-  font-size: 2.5vw;
-  color: black;
-  font-family: 'Sergio Trendy', cursive;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-  text-align: left;
-}
-
-.p1, .p2, .p3 {
-  font-family: 'Sergio Trendy', cursive;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  font-size: clamp(1.5rem, 4vw + .5rem, 2.5rem);
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, .5);
 }
 
 .p1 {
-  font-size: 1.5vw;
+  font-size: clamp(1.1rem, 2.7vw + .3rem, 1.4rem);
 }
 
 .p2 {
-  font-size: 1.3vw;
+  font-size: clamp(.95rem, 2.1vw + .25rem, 1.2rem);
 }
 
 .p3 {
-  font-size: 0.75vw;
+  font-size: clamp(.8rem, 1.5vw + .2rem, 1rem);
 }
 
-/* 4. Scrollbar Styles */
-.scrollbar::-webkit-scrollbar {
-  width: 8px;
+.p1,
+.p2,
+.p3 {
+  font-family: 'Sergio Trendy', cursive;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, .5);
 }
 
-.scrollbar::-webkit-scrollbar-thumb {
-  background-color: #4A5568;
-  border-radius: 4px;
-}
-
-.scrollbar::-webkit-scrollbar-track {
-  background-color: #CBD5E0;
-}
-
-/* 5. Vue Transition Classes */
-.slide-enter-active,
-.slide-leave-active {
-  transition: opacity 0.5s;
-}
-
-.slide-enter,
-.slide-leave-to {
-  opacity: 0;
-}
-
-/* 6. Responsive Design Fix */
-@media (max-width: 715px) {
-  #app {
-    background-size: auto auto;
-  }
-
-  h1 {
-    font-size: 6vw;
-  }
-
-  h2 {
-    font-size: 4vw;
-  }
-}
-
-/* 7. Modal Styles */
-.modal {
-  display: none;
+/*───────────────────────────────────────────────────────────────────┐
+│  4. Navbar                                                         │
+│     - fixed bar (.nav-fixed)                                       │
+│     - burger overlay list (#nav-menu + .open)                      │
+└───────────────────────────────────────────────────────────────────*/
+.nav-fixed {
   position: fixed;
-  z-index: 1000;
-  left: 0;
   top: 0;
+  left: 0;
   width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 20;
 }
 
-.modal-content {
-  background-color: #fefefe;
-  margin: 15% auto;
-  padding: 20px;
-  border: 1px solid #888;
-  width: 80%;
+/* mobile burger drawer */
+@media (max-width:767px) {
+  #nav-menu {
+    position: fixed;
+    top: var(--nav-h);
+    left: 0;
+    width: 100%;
+    max-height: 60vh;
+    overflow-y: auto;
+    background: rgba(255, 255, 255, .95);
+    border-top: 2px solid #d4af37;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, .15);
+    padding: 1rem 0;
+    display: none;
+    flex-direction: column;
+    gap: .75rem;
+    z-index: 40;
+    /* above page, below modal */
+  }
+
+  #nav-menu.open {
+    display: flex;
+  }
 }
 
-.close {
-  color: #aaa;
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
+/* push hero content *below* nav & open burger */
+.hero-content,
+.honeymoon-hero {
+  margin-top: calc(var(--nav-h) + var(--nav-extra));
 }
 
-.close:hover {
-  color: black;
-  cursor: pointer;
+/*───────────────────────────────────────────────────────────────────┐
+│  5. Modal helpers                                                 │
+└───────────────────────────────────────────────────────────────────*/
+.modal-overlay {
+  z-index: 50;
 }
 
-/* 8. Custom Button Styles */
-.custom-button {
-  width: 50%;
+.modal-window {
+  max-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.modal-body {
+  flex: 1 1 auto;
+  overflow-y: auto;
   padding: 1rem;
-  border-radius: 2.5rem;
-  font-size: 1rem;
-  font-weight: bold;
-  text-align: center;
-  cursor: pointer;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  transition: transform 0.2s ease-in-out, background-color 0.2s ease-in-out, color 0.2s ease-in-out;
-  background-color: #FFD700;
-  border: 2px solid black;
 }
 
-.custom-button:hover {
-  transform: scale(1.05);
-  background-color: #FF4500;
-  background-image: url('../public/images/red-background-image.jpg');
-  color: white;
+.modal-close {
+  flex: 0 0 auto;
+  margin: 1rem auto 0;
 }
 
-/* For buttons with background images */
-.bg-button-image {
-  background-image: url('../public/images/gold-background-image.jpg');
-  background-size: cover;
-  background-position: center;
+/*───────────────────────────────────────────────────────────────────┐
+│  6. Honeymoon Fund image helper                                   │
+└───────────────────────────────────────────────────────────────────*/
+.img-responsive-max {
+  width: 20%;
+  height: auto;
+  object-fit: contain;
 }
 
+/*───────────────────────────────────────────────────────────────────┐
+│  7. Order-of-the-Day layout                                       │
+│     .order-wrapper : 90 vw panel, centred                         │
+│     .order-table   : auto-wrapping columns                        │
+└───────────────────────────────────────────────────────────────────*/
+.order-wrapper {
+  width: 80vw;
+  max-width: 650px;
+  margin: 0 auto;
+}
+
+.order-table {
+  width: 100%;
+  table-layout: fixed;
+}
+
+.order-table tr {
+  display: flex;
+}
+
+.order-table td {
+  padding: .4rem .6rem;
+}
+
+/* 30 % time | 70 % activity */
+.order-table td:nth-child(1) {
+  width: 30%;
+  text-align: right;
+}
+
+.order-table td:nth-child(2) {
+  width: 70%;
+  text-align: left;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+/* stack on very narrow phones */
+@media (max-width:479px) {
+  .order-table tr {
+    flex-direction: column;
+  }
+
+  .order-table td {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+/* 2-column grid on tablets / desktop */
+@media (min-width:768px) {
+  .order-table tbody {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: .5rem 1rem;
+  }
+
+  .order-table tr {
+    flex-direction: row;
+  }
+}
+
+/*───────────────────────────────────────────────────────────────────┐
+│  8. Buttons (unchanged from original)                             │
+└───────────────────────────────────────────────────────────────────*/
+.custom-button,
 .custom-button2 {
-  padding: 0.5rem 1rem;
-  border-radius: 1.5rem;
-  font-size: 1rem;
+  padding: .75rem 1.25rem;
+  border-radius: 2rem;
   font-weight: bold;
-  text-align: center;
   cursor: pointer;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  transition: transform 0.2s ease-in-out, background-color 0.2s ease-in-out;
-  background-color: #FFD700;
-  border: 2px solid black;
+  transition: transform .2s, background-color .2s, color .2s;
+  background: #ffd700;
+  border: 2px solid #000;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, .2);
 }
 
+.custom-button:hover,
 .custom-button2:hover {
   transform: scale(1.05);
-  background-color: #FF4500;
+  background: #ff4500;
+  color: #fff;
   background-image: url('../public/images/red-background-image.jpg');
-  color: white;
 }
 
-/* Gold button background */
+.bg-button-image,
 .bg-button2-image {
   background-image: url('../public/images/gold-background-image.jpg');
   background-size: cover;
   background-position: center;
 }
 
+/*───────────────────────────────────────────────────────────────────┐
+│  9. Sparkle animation keyframes (unchanged)                       │
+└───────────────────────────────────────────────────────────────────*/
+@keyframes sparkle {
+  0% {
+    background-position: 0% 50%;
+  }
 
-
-/* === Responsive Typography & Utilities (added May 2025) === */
-h1{font-size:clamp(2.25rem,6vw + .5rem,4rem);}
-h2{font-size:clamp(1.5rem,4vw + .5rem,2.5rem);}
-.p1{font-size:clamp(1.1rem,2.7vw + .3rem,1.4rem);}
-.p2{font-size:clamp(.95rem,2.1vw + .25rem,1.2rem);}
-.p3{font-size:clamp(.8rem,1.5vw + .2rem,1rem);}
-img.responsive-img{width:100%;height:auto;object-fit:cover;}
-
-/* === Viewport Height Utilities (May 2025) === */
-.min-h-dvh{min-height:100dvh;}
-.h-dvh{height:100dvh;}
-:root{--vh:1vh;}
-.min-h-dvh-fallback{min-height:calc(var(--vh)*100);}
-.h-dvh-fallback{height:calc(var(--vh)*100);}
-
-/* === Responsive hero background === */
-.hero-bg{
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-image: url('/public/images/background-original.png'); /* fallback */
-}
-
-@supports (background-image: image-set(url('/public/images/background-mobile-640.png') 1x)) {
-  .hero-bg{
-    background-image: image-set(
-      url('../public/images/background-mobile-640.png') 1x,
-      url('../public/images/background-tablet-1024.png') 1.5x,
-      url('../public/images/background.png') 2x,
-      url('../public/images/background-original.png') 3x
-    );
+  100% {
+    background-position: 100% 50%;
   }
 }
 
-/* === Landscape mobile adjustments === */
-@media (orientation: landscape) and (max-height: 500px){
-  h1{font-size:clamp(1.5rem,4.5vw,2.5rem);}
-  h2{font-size:clamp(1.25rem,4vw,2rem);}
-  .p1{font-size:clamp(.9rem,2.5vw,1.1rem);}
-  .hero-content{padding-top:0.5rem;padding-bottom:0.5rem;gap:0.5rem;}
-  nav{padding-top:0.25rem;padding-bottom:0.25rem;}
-}
-/* === Fixed nav at top & hero padding === */
-.nav-fixed{position:absolute;top:0;left:0;width:100%;z-index:20;}
-@media (min-height:500px){.nav-fixed{position:relative;}}
-.hero-content{padding-top:4rem;}
-@media (orientation:landscape) and (max-height:500px){.hero-content{padding-top:3rem;}}
-/* Helper for background wrapper */
-.hero-bg{background-size:cover;background-position:center;background-repeat:no-repeat;}
+/*───────────────────────────────────────────────────────────────────┐
+│  10. Phone tweaks (< 481 px) – keeps buttons & copy proportional  │
+└───────────────────────────────────────────────────────────────────*/
+@media (max-width: 480px) {
 
-/* === Nav height variable & fixed navbar === */
-:root{--nav-h:60px;}
-@media (min-width:768px){:root{--nav-h:72px;}}
-
-.nav-fixed{
-  position:fixed;
-  top:0;
-  left:0;
-  width:100%;
-  z-index:30;
-}
-
-.hero-content{
-  padding-top:var(--nav-h);
-}
-
-/* Ensure hero content gap doesn't push buttons under nav on tiny screens */
-@media (max-width:640px){
-  .hero-content{gap:1rem;}
-}
-
-/* === Order of the Day responsive layout === */
-.order-table tbody{
-  display:flex;
-  flex-direction:column;
-  gap:.25rem;
-}
-.order-table tbody tr{
-  display:flex;
-  justify-content:center;
-  gap:1rem;
-}
-.order-table td{
-  padding:.25rem .5rem;
-}
-
-@media (min-width:768px){
-  .order-table tbody{
-    flex-direction:row;
-    flex-wrap:wrap;
+  /* Hero copy tighter spacing */
+  .hero-content {
+    gap: .75rem;
   }
-  .order-table tbody tr{
-    width:50%;
-    justify-content:flex-end;
+
+  /* Buttons: full-width & smaller type */
+  .custom-button,
+  .custom-button2 {
+    width: 100%;
+    font-size: clamp(.85rem, 4vw, 1rem);
+    /* 0.85 – 1 rem */
+    padding: .65rem 1rem;
+  }
+
+  /* Paragraph sizes already use clamp, but if you need more shrink: */
+  .p1 {
+    font-size: clamp(1rem, 4.5vw, 1.3rem);
+  }
+
+  .p2 {
+    font-size: clamp(.9rem, 4vw, 1.1rem);
   }
 }
 
-/* === Modal overlay above nav === */
-.modal-overlay{z-index:50;}
-.nav-fixed{z-index:20;}
+/*───────────────────────────────────────────────────────────────────┐
+│  11. Landscape-phone override (≤ 450 px tall)                      │
+│      – keeps copy below header & buttons proportional             │
+└───────────────────────────────────────────────────────────────────*/
+@media (orientation: landscape) and (max-height: 450px) {
 
-/* === Hero offset respects open mobile menu === */
-:root{--nav-extra:0px;}
-.hero-content{
-  margin-top:calc(var(--nav-h) + var(--nav-extra));
+  /* tighter hero spacing */
+  .hero-content {
+    gap: .5rem;
+  }
+
+  /* headline & sub-headline */
+  h1 {
+    font-size: clamp(1.25rem, 3.5vw, 2rem);
+  }
+
+  h2 {
+    font-size: clamp(1rem, 3vw, 1.6rem);
+  }
+
+  /* body paragraphs */
+  .p1 {
+    font-size: clamp(.85rem, 2.8vw, 1rem);
+  }
+
+  .p2 {
+    font-size: clamp(.8rem, 2.5vw, .95rem);
+  }
+
+  /* buttons: 80 % width and smaller text */
+  .custom-button,
+  .custom-button2 {
+    width: 80%;
+    font-size: clamp(.8rem, 3vw, .95rem);
+    padding: .55rem 1rem;
+  }
 }
 
-/* === Modal layout: scrollable body + fixed button === */
-.modal-window{
-  max-height:80vh;
-  display:flex;
-  flex-direction:column;
-  overflow:hidden;
+/*───────────────────────────────────────────────────────────────────┐
+│  12. Location-page landscape-phone fix (≤ 450 px tall)            │
+│      – limits image / map height and button width                 │
+└───────────────────────────────────────────────────────────────────*/
+@media (orientation: landscape) and (max-height: 450px) {
+
+  /* Boutique shot or hotel photo */
+  .location-img,
+  img[alt~="Hotel"],
+  img[alt~="Parking"] {
+    max-width: 80vw;
+    max-height: 45vh;
+    /* never taller than half the screen */
+    height: auto;
+    object-fit: contain;
+    /* keep aspect ratio */
+    display: block;
+    margin: 0 auto;
+    /* centred */
+  }
+
+  /* Map container (id="map" in location.html) */
+  #map {
+    width: 40vw;
+    height: 45vh;
+    /* same as image cap */
+    margin: 0 auto;
+  }
+
+  /* “The Green House Hotel” button */
+  .custom-button,
+  .custom-button2 {
+    width: 80%;
+    font-size: clamp(.8rem, 3vw, .95rem);
+    /* matches hero override */
+    padding: .55rem 1rem;
+  }
 }
-.modal-body{
-  flex:1 1 auto;
-  overflow-y:auto;
-  padding:1rem;
+
+/*──────────────────────────────────────────────────────────────┐
+│  13. Location-page landscape-phone fix (≤ 450 px tall)        │
+│      – caps map / image height & narrows button               │
+└──────────────────────────────────────────────────────────────*/
+@media (orientation: landscape) and (max-height: 450px) {
+
+  /* Map */
+  /* Map */
+  .map-box,
+  #map {
+    width: 100%;
+    /* fill the column, not the viewport  */
+    max-width: 80vw;
+    /* still prevent overflow on very wide phones */
+    height: 45vh;
+    margin: 0 auto;
+  }
 }
-.modal-close{
-  flex:0 0 auto;
-  margin:1rem auto 0 auto;
+
+/* Parking or hotel photo */
+.location-img {
+  max-width: 80vw;
+  max-height: 45vh;
+  height: auto;
+  object-fit: contain;
+  display: block;
+  margin: 0.5rem auto;
+}
+
+/* “Green House Hotel” button */
+.custom-button2 {
+  width: 80%;
+  font-size: clamp(.8rem, 3vw, .95rem);
+  padding: .55rem 1rem;
 }

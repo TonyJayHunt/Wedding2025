@@ -18,7 +18,7 @@
   <!-- Full-screen background (optional) -->
   <div class="hero-bg w-full min-h-dvh bg-cover bg-center bg-no-repeat">
     <div id="app"
-            class="hero-content flex flex-col items-center justify-center gap-6 container mx-auto py-8 bg-contain bg-center bg-no-repeat h-dvh">
+      class="hero-content flex flex-col items-center justify-center gap-6 container mx-auto py-8 bg-contain bg-center bg-no-repeat h-dvh">
       <!-- Navbar -->
       <nav class="nav-fixed bg-opacity-0 p-4">
         <div class="container mx-auto flex items-center justify-between">
@@ -58,6 +58,7 @@
 
         <!-- Right Sidebar: Main Content with Vue Loop -->
         <div class="bg-white p-6 bg-opacity-0">
+          <h1><br/></h1>
           <!-- Only show "unlocked" choices -->
           <div v-for="choice in filteredChoices" :key="choice.id" class="flex flex-col items-center">
             <button @click="showModal(choice)" class="custom-button bg-button-image">
@@ -68,8 +69,10 @@
       </div>
 
       <!-- Modal -->
-      <div v-if="showModalFlag" class="modal-overlay fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
-        <div class="bg-white p-8 rounded-lg text-center flex flex-col items-center w-11/12 md:w-1/2 max-h-[80vh] overflow-y-auto">
+      <div v-if="showModalFlag"
+        class="modal-overlay fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+        <!-- Modal Window -->
+        <div class="modal-window bg-white p-8 rounded-lg text-center items-center w-11/12 md:w-1/2">
           <!-- RSVP (id = 1) -->
           <div v-if="selectedchoicesItem.id === 1">
             <template v-if="!showInviteResult">
@@ -99,7 +102,7 @@
           </div>
 
           <!-- Additional Information (id = 2) -->
-          <div v-else-if="selectedchoicesItem.id === 2">
+          <div v-else-if="selectedchoicesItem.id === 2" class="modal-body">
             <!-- Inner container: 30% width, centered, with text centered -->
             <div class="mx-auto text-center overflow-y-auto" style="max-width: 100%; max-height: 40rem;">
               <h2 class="text-xl font-semibold mb-4 break-words">
@@ -119,7 +122,8 @@
               <br>
               </p>
               <p class="text-gray-700 break-words mb-4">
-                <u><b>On The Day Information</b></u><br/></p>
+                <u><b>On The Day Information</b></u><br />
+              </p>
               <ul>
                 <li><b>What time do I need to arrive?</b></li>
                 <li>If you are joining us for the whole day we recommend 12:30pm, and if you are joining us for the
@@ -139,10 +143,11 @@
                   <a href="http://www.thegreenhousehotel.com/" target="_blank">The Green House Hotel.</a>
                 </li>
                 <li><b>Parking:</b></li>
-                <li>Parking details can be found on the <a href="./pages/location.html"
-                    target="_blank">‘location’</a> tab from our website.</li>
+                <li>Parking details can be found on the <a href="./pages/location.html" target="_blank">‘location’</a>
+                  tab from our website.</li>
                 <li><b>Accommodation:</b></li>
-                <li>There are some rooms available at <a href="http://www.thegreenhousehotel.com/" target="_blank">The Green
+                <li>There are some rooms available at <a href="http://www.thegreenhousehotel.com/" target="_blank">The
+                    Green
                     House Hotel</a>. Please enquire with them directly. For additional
                   options, there are many nearby hotels.</li>
                 <li><b>Gifts:</b></li>
@@ -166,7 +171,7 @@
           </div>
 
           <!-- Close Button -->
-          <button @click="closeModal" class="custom-button2 bg-button2-image">
+          <button @click="closeModal" class="modal-close custom-button2 bg-button2-image">
             Close
           </button>
         </div>

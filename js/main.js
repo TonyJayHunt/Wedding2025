@@ -124,11 +124,27 @@ new Vue({
           console.error('Error fetching Google Sheet data:', err);
         });
     },
+    /*─────────────────────────────────────────────┐
+    │  goToGreenHouseHotel                        │
+    │  Opens Google Maps centred on the hotel.    │
+    └─────────────────────────────────────────────*/
     goToGreenHouseHotel() {
       window.open(
         'https://www.google.com/maps/search/?api=1&query=50.7205,-1.8765',
         '_blank'
       );
+    },
+    /*─────────────────────────────────────────────┐
+  │  formatTime                                 │
+  │  Converts 'HH:MM:SS' → 'h:MM am/pm'         │
+  └─────────────────────────────────────────────*/
+    formatTime(t) {
+      if (!t) return t;
+      const [hh, mm] = t.split(':');
+      let h = parseInt(hh, 10);
+      const ampm = h >= 12 ? 'pm' : 'am';
+      h = h % 12 || 12;
+      return `${h}:${mm} ${ampm}`;
     },
 
     /**

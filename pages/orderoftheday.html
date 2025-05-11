@@ -41,20 +41,15 @@
       <!-- Content Section: Centered, minimal width table -->
       <div class="bg-white p-6 bg-opacity-0 text-center">
         <!-- "overflow-x-auto" allows horizontal scrolling if columns get too wide -->
-        <div class="overflow-x-auto inline-block">
-          <!-- 
-              table-auto => auto-sized columns
-              mx-auto => center horizontally
-              text-center => align text center
-            -->
-          <table class="table-auto mx-auto text-center border border-transparent" class="order-table">
+        <div class="order-wrapper">
+          <table class="order-table">
             <thead>
               <tr class="bg-gray-100"></tr>
             </thead>
             <tbody>
               <tr v-for="(row, index) in orderOfTheDay" :key="index">
                 <td class="p2 text-center border-b border-transparent px-4 py-2 whitespace-nowrap">
-                  {{ row.time }}
+                  {{ formatTime(row.time) }}
                 </td>
                 <td class="p2 text-center border-b border-transparent px-4 py-2 whitespace-nowrap">
                   {{ row.activity }}

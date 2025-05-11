@@ -1,16 +1,22 @@
-
+/**
+ * nav.js
+ * Handles the burger toggle and updates CSS var --nav-extra
+ * so the main content is pushed down exactly the open-menu height.
+ */
 document.addEventListener('DOMContentLoaded', () => {
-  const btn  = document.getElementById('nav-toggle');
+  const btn = document.getElementById('nav-toggle');
   const menu = document.getElementById('nav-menu');
-  function updateNavExtra(){
+
+  /** updateNavExtra – writes the open menu’s height to --nav-extra */
+  function updateNavExtra() {
     const extra = menu && !menu.classList.contains('hidden') ? menu.offsetHeight : 0;
-    document.documentElement.style.setProperty('--nav-extra', extra + 'px');
+    document.documentElement.style.setProperty('--nav-extra', `${extra}px`);
   }
-  if(btn && menu){
-    updateNavExtra();
+
+  if (btn && menu) {
+    updateNavExtra();                         // run once on load
     btn.addEventListener('click', () => {
-      menu.classList.toggle('hidden');
-      updateNavExtra();
+      menu.classList.toggle('open');          // ↩ show / hide drawer
     });
     window.addEventListener('resize', updateNavExtra);
   }
