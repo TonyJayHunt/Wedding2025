@@ -17,25 +17,26 @@
 <body class="bg-cream-100">
   <div class="hero-bg w-full min-h-dvh bg-cover bg-center bg-no-repeat">
     <div id="app"
-            class="hero-content flex flex-col items-center justify-center gap-6 container mx-auto py-8 bg-contain bg-center bg-no-repeat h-dvh">
+      class="hero-content flex flex-col items-center justify-center gap-6 container mx-auto py-8 bg-contain bg-center bg-no-repeat h-dvh">
       <!-- Navbar -->
       <nav class="nav-fixed bg-opacity-0 p-4">
-  <div class="container mx-auto flex items-center justify-between">
-    <h1 class="flex-1 text-center md:text-left leading-tight">All&nbsp;About&nbsp;Us</h1>
-    <button id="nav-toggle" class="md:hidden p-2 rounded focus:outline-none">
-      <svg class="w-8 h-8 text-gold-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
-        <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
-      </svg>
-    </button>
-  </div>
+        <div class="container mx-auto flex items-center justify-between">
+          <h1 class="flex-1 text-center md:text-left leading-tight">All&nbsp;About&nbsp;Us</h1>
+          <button id="nav-toggle" class="md:hidden p-2 rounded focus:outline-none">
+            <svg class="w-8 h-8 text-gold-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          </button>
+        </div>
 
-  <ul id="nav-menu" class="flex-col md:flex md:flex-row md:justify-center text-center space-y-4 md:space-y-0 md:space-x-4 mt-4 md:mt-0">
-<li><a href="../index.html" class="text-gold-500 font-bold">Home</a></li>
-<li><a href="./location.html" class="text-gold-500 font-bold">Location</a></li>
-<li><a href="./orderoftheday.html" class="text-gold-500 font-bold">Order Of The Day</a></li>
-<li v-if="isHoneymoonUnlocked"><a href="./HoneyMoonFund.html" class="text-gold-500 font-bold">Honeymoon Fund</a></li>
-  </ul>
-</nav>
+        <ul id="nav-menu"
+          class="flex-col md:flex md:flex-row md:justify-center text-center space-y-4 md:space-y-0 md:space-x-4 mt-4 md:mt-0">
+          <li><a href="../index.html" class="text-gold-500 font-bold">Home</a></li>
+          <li><a href="./location.html" class="text-gold-500 font-bold">Location</a></li>
+          <li><a href="./orderoftheday.html" class="text-gold-500 font-bold">Order Of The Day</a></li>
+          <li><a href="./HoneyMoonFund.html" class="text-gold-500 font-bold">Honeymoon Fund</a></li>
+        </ul>
+      </nav>
 
       <!-- Content Section -->
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -44,24 +45,24 @@
         <div class="bg-white p-6 bg-opacity-0 flex items-center justify-center relative" style="height: 400px;">
           <template v-if="currentImage !== undefined">
             <!-- Prev Button (Left Arrow) -->
-            <button @click="prevImage" 
-                    class="absolute left-0 bg-gold-300 hover:bg-gold-400 text-silver-800 text-6xl p-4 rounded-full cursor-pointer"
-                    style="top: 50%; transform: translateY(-50%);">
+            <button @click="prevImage"
+              class="absolute left-0 bg-gold-300 hover:bg-gold-400 text-silver-800 text-6xl p-4 rounded-full cursor-pointer"
+              style="top: 50%; transform: translateY(-50%);">
               &#10094;
             </button>
-        
+
             <!-- Image Container -->
             <div class="carousel flex justify-center items-center w-full h-full">
               <transition name="slide" mode="out-in">
-                <img :key="currentImage" :src="images[currentImage]" alt="carousel image" 
-                     class="max-w-full max-h-full object-contain" />
+                <img :key="currentImage" :src="images[currentImage]" alt="carousel image"
+                  class="max-w-full max-h-full object-contain" />
               </transition>
             </div>
-        
+
             <!-- Next Button (Right Arrow) -->
-            <button @click="nextImage" 
-                    class="absolute right-0 bg-gold-300 hover:bg-gold-400 text-silver-800 text-6xl p-4 rounded-full cursor-pointer"
-                    style="top: 50%; transform: translateY(-50%);">
+            <button @click="nextImage"
+              class="absolute right-0 bg-gold-300 hover:bg-gold-400 text-silver-800 text-6xl p-4 rounded-full cursor-pointer"
+              style="top: 50%; transform: translateY(-50%);">
               &#10095;
             </button>
           </template>
@@ -134,11 +135,10 @@
 
     <!-- Vue.js (CDN) -->
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
-    <!-- Polyfill (if needed) -->
-    <script src="https://polyfill.io/v3/polyfill.min.js"></script>
     <!-- Local Carousel Script (Vue instance for images) -->
     <!-- If `ImageCarouselScript.js` is in `src/js/`, update relative path accordingly -->
-    <script src="../js/ImageCarouselScript.js"></script>  <script src="../js/nav.js"></script>
+    <script src="../js/ImageCarouselScript.js"></script>
+    <script src="../js/nav.js"></script>
 
 </body>
 
