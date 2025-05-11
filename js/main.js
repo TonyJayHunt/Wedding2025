@@ -130,7 +130,7 @@ new Vue({
     └─────────────────────────────────────────────*/
     goToGreenHouseHotel() {
       window.open(
-        'https://www.google.com/maps/search/?api=1&query=50.7205,-1.8765',
+        'https://www.google.com/maps/search/?api=1&query=50.7193677,-1.8683981',
         '_blank'
       );
     },
