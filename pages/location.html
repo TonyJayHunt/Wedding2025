@@ -16,11 +16,11 @@
 </head>
 
 <body class="bg-cream-100">
-  <div class="w-full min-h-screen bg-cover bg-center bg-no-repeat"
-    style="background-image: url('../../public/images/background.png');">
-    <div id="app" class="container mx-auto py-8 bg-contain bg-center bg-no-repeat h-screen">
+  <div class="hero-bg w-full min-h-dvh bg-cover bg-center bg-no-repeat">
+    <div id="app"
+      class="hero-content flex flex-col items-center justify-center gap-6 container mx-auto py-8 bg-contain bg-center bg-no-repeat h-dvh">
       <!-- Navbar -->
-      <nav class="bg-opacity-0 p-4">
+      <nav class="nav-fixed bg-opacity-0 p-4">
         <div class="container mx-auto flex items-center justify-between">
           <h1 class="flex-1 text-center md:text-left leading-tight">Wedding&nbsp;Location</h1>
           <button id="nav-toggle" class="md:hidden p-2 rounded focus:outline-none">
@@ -42,8 +42,9 @@
 
       <!-- Content Section -->
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <!-- Left: Map Display -->
+        <!-- Left: Map Display -->         
         <div class="bg-white p-6 bg-opacity-0">
+          <h1><br/></h1>
           <button @click="goToGreenHouseHotel" class="custom-button2 bg-button2-image">
             The Green House Hotel
           </button>
@@ -55,6 +56,7 @@
 
         <!-- Right: Parking & Description -->
         <div class="bg-white p-6 bg-opacity-0">
+          <h1><br/></h1>
           <h2 class="text-xl font-semibold mb-4 text-center">Parking & Description</h2>
           <div class="text-center">
             <p class="p3">
@@ -63,7 +65,8 @@
             <!-- Responsive full-width image -->
             <img src="../../public/images/parking.jpg" alt="Parking Map" class="mt-2 w-full h-auto" />
             <p class="p3">
-              If you are not staying overnight at the Greenhouse, please note you will need to leave the carpark by midnight, or become a pumpkin and get a fine.
+              If you are not staying overnight at the Greenhouse, please note you will need to leave the carpark by
+              midnight, or become a pumpkin and get a fine.
             </p>
           </div>
         </div>
@@ -77,7 +80,6 @@
     <script src="https://cdn.jsdelivr.net/npm/mapbox-gl@2.6.1/dist/mapbox-gl.js"></script>
     <!-- Adjust path if your script is named differently or in another folder -->
     <script src="../js/main.js"></script>
-
     <script src="../js/map_script.js"></script>
     <script src="../js/nav.js"></script>
 

@@ -48,6 +48,7 @@ new Vue({
       showInviteResult: false,
       buttontext: "",
       orderOfTheDay: [],
+      currentImage: undefined,
 
       // Date controlling the Honeymoon Fund link
       honeymoonUnlockDate: "2025-03-01"
@@ -82,6 +83,8 @@ new Vue({
   },
 
   methods: {
+    prevImage() { /* placeholder to silence Vue warn */ },
+    nextImage() { /* placeholder */ },
     /**
      * Fetch "Order of the Day" data from a public Google Sheet using the gviz/tq endpoint.
      */
@@ -89,37 +92,43 @@ new Vue({
       const sheetUrl =
         'https://docs.google.com/spreadsheets/d/e/2PACX-1vT2-oR8lC1tQV_Sp6mIADNqBnN5sdI6Th_kBEjDTysxgJ9x0NwnIiu48JZ2Xnfs4pAagPulWBSHnww1/pub?gid=0&single=true&output=csv';
 
-        fetch(sheetUrl)
+      fetch(sheetUrl)
         .then(response => response.text())
         .then(csvData => {
           // Split the CSV into lines
           const lines = csvData.trim().split('\n');
-    
+
           // Optional: if the first line is a header, remove it
           // e.g. if header is "time,activity"
           lines.shift();
-    
+
           // Now parse each line
           const result = lines.map(line => {
             // Split columns by comma
             const [timeValue, activityValue] = line.split(',');
-    
+
             // If you *still* need to parse a Date(...) string,
             // you can call your parseGvizDate function. Otherwise,
             // you can just store the raw string.
-    
+
             return {
               time: timeValue,      // or: time: this.parseGvizDate(timeValue)
               activity: activityValue
             };
           });
-    
+
           // Assign to your component data
           this.orderOfTheDay = result;
         })
         .catch(err => {
           console.error('Error fetching Google Sheet data:', err);
         });
+    },
+    goToGreenHouseHotel() {
+      window.open(
+        'https://www.google.com/maps/search/?api=1&query=50.7205,-1.8765',
+        '_blank'
+      );
     },
 
     /**
@@ -167,22 +176,22 @@ new Vue({
 
       if (codeValue === "j0u?") {
         this.inviteMessage = `Nicki and Tony are delighted to invite you and a guest to their wedding day.`;
-        this.inviteLink = "https://forms.gle/m8EH99vdze6rRAZp6"; 
+        this.inviteLink = "https://forms.gle/m8EH99vdze6rRAZp6";
         this.showInviteResult = true;
         this.buttontext = "Click Here To RSVP & Make Menu Choices";
       } else if (codeValue === "n0ch£") {
         this.inviteMessage = `Nicki and Tony are delighted to invite you and a guest to their evening reception.`;
-        this.inviteLink = "https://forms.gle/PiYArfnSjdbsec5j9"; 
+        this.inviteLink = "https://forms.gle/PiYArfnSjdbsec5j9";
         this.showInviteResult = true;
         this.buttontext = "Click Here To RSVP";
       } else if (codeValue === "d1wrnodpr!od@ss3ngl") {
         this.inviteMessage = `Nicki and Tony are delighted to invite you to their wedding day.`;
-        this.inviteLink = "https://forms.gle/DunbW6q3PdgfFvai8"; 
+        this.inviteLink = "https://forms.gle/DunbW6q3PdgfFvai8";
         this.showInviteResult = true;
         this.buttontext = "Click Here To RSVP";
       } else if (codeValue === "n0s0nbr!od@ss3ngl") {
         this.inviteMessage = `Nicki and Tony are delighted to invite you to their evening reception.`;
-        this.inviteLink = "https://forms.gle/9tK2kMG1rV4Tf6WP8"; 
+        this.inviteLink = "https://forms.gle/9tK2kMG1rV4Tf6WP8";
         this.showInviteResult = true;
         this.buttontext = "Click Here To RSVP";
       } else {
