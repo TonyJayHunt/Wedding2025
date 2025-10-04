@@ -4,12 +4,12 @@ new Vue({
     return {
       // "choices" each with its own unlockDate
       choices: [
-        {
+        /*{
           id: 1,
           title: "Invitation and RSVP",
           description: "",
           unlockDate: "2025-03-19"
-        },
+        },*/
         {
           id: 2,
           title: "Important Information",
