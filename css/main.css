@@ -442,7 +442,7 @@ h2 {
 
 
 /*──────────────── Timeline (merged from somethingsomething) ────────────────*/
-.timeline-card{ background:rgba(255,255,255,.85); border-radius:.5rem; padding:1.25rem; box-shadow:0 10px 25px -5px rgba(0,0,0,.1), 0 10px 10px -5px rgba(0,0,0,.04); }
+.timeline-card{ background:transparent; border-radius:.5rem; padding:1.25rem; box-shadow:0 10px 25px -5px rgba(0,0,0,.1), 0 10px 10px -5px rgba(0,0,0,.04); }
 .timeline-container{ max-width:650px; margin:0 auto; position:relative; }
 .timeline-item{ display:flex; align-items:center; position:relative; min-height:74px; }
 .timeline-line{ position:absolute; left:28px; top:0; bottom:0; width:2px; background-color:#e5e7eb; z-index:1; }
