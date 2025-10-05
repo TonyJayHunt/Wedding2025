@@ -27,20 +27,47 @@ body {
   min-height: 100dvh;
 }
 
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  z-index: -1;
-  background: url("../public/images/background.png") center/cover no-repeat;
+/* Edge-fill layer */
+body::before{
+  content:"";
+  position: fixed; inset: 0; z-index: -2;
+  background-image: url("../public/images/background.png");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;              /* fills the viewport */
+  filter: blur(10px);
+  transform: scale(1.06);              /* hide blur edge bleed */
+  opacity: .35;                         /* subtle backdrop */
+  background-color: #FFFFF0;            /* behind the blur */
 }
 
-@supports (background-image: image-set(url("../public/images/background-mobile-640.png") 1x)) {
-  body::before {
-    background-image: image-set(url("../public/images/background-mobile-640.png") 1x,
-        url("../public/images/background-tablet-1024.png") 1.5x,
-        url("../public/images/background.png") 2x,
-        url("../public/images/background-original.png") 3x);
+body::after{
+  content:"";
+  position: fixed; inset: 0; z-index: -1;
+  background-image: url("../public/images/background.png");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: contain;             /* ⬅️ no cropping */
+  background-color: transparent;
+}
+
+
+@supports (background-image: image-set(url("../public/images/background-mobile-640.png") 1x)){
+  body::before{
+    background-image: image-set(
+      url("../public/images/background-mobile-640.png") 1x,
+      url("../public/images/background-tablet-1024.png") 1.5x,
+      url("../public/images/background.png") 2x,
+      url("../public/images/background-original.png") 3x
+    );
+  }
+  body::after{
+    background-image: image-set(
+      url("../public/images/background-mobile-640.png") 1x,
+      url("../public/images/background-tablet-1024.png") 1.5x,
+      url("../public/images/background.png") 2x,
+      url("../public/images/background-original.png") 3x
+    );
   }
 }
 
@@ -129,6 +156,8 @@ h2 {
 .honeymoon-hero {
   margin-top: calc(var(--nav-h) + var(--nav-extra));
 }
+
+.hero-bg{ background: none !important; }
 
 /*───────────────────────────────────────────────────────────────────┐
 │  5. Modal helpers                                                 │
@@ -410,3 +439,26 @@ h2 {
   font-size: clamp(.8rem, 3vw, .95rem);
   padding: .55rem 1rem;
 }
+
+
+/*──────────────── Timeline (merged from somethingsomething) ────────────────*/
+.timeline-card{ background:rgba(255,255,255,.85); border-radius:.5rem; padding:1.25rem; box-shadow:0 10px 25px -5px rgba(0,0,0,.1), 0 10px 10px -5px rgba(0,0,0,.04); }
+.timeline-container{ max-width:650px; margin:0 auto; position:relative; }
+.timeline-item{ display:flex; align-items:center; position:relative; min-height:74px; }
+.timeline-line{ position:absolute; left:28px; top:0; bottom:0; width:2px; background-color:#e5e7eb; z-index:1; }
+.timeline-item:first-child .timeline-line{ top:50%; }
+.timeline-item:last-child .timeline-line{ bottom:50%; }
+.timeline-icon{ width:56px; height:56px; flex-shrink:0; display:flex; align-items:center; justify-content:center; background-color:white; z-index:10; position:relative; border-radius:9999px; box-shadow:0 1px 2px rgba(0,0,0,.08); }
+.icon-svg,.icon-img{ width:36px; height:36px; }
+.icon-svg{ stroke:#374151; stroke-width:1.5; }
+.timeline-content{ margin-left:1rem; }
+.timeline-time{ font-weight:600; color:#4b5563; font-size:1.05rem; }
+.timeline-event{ font-size:1.15rem; font-weight:600; color:#1f2937; letter-spacing:.02em; text-transform:uppercase; }
+.timeline-content .timeline-time{ text-align: left; }
+@media (max-width:480px){
+  .timeline-item{ min-height:66px; }
+  .icon-svg,.icon-img{ width:28px; height:28px; }
+  .timeline-time{ font-size:.95rem; }
+  .timeline-event{ font-size:1rem; }
+}
+

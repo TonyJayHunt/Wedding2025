@@ -57,15 +57,56 @@
               </tr>
             </tbody>
           </table>
-        </div>
+        
+      <!-- Timeline (merged from somethingsomething) -->
+      <section class="timeline-card mt-6">
+        <div class="timeline-container" id="timeline-container"></div>
+      </section>
+    
       </div>
     </div>
 
     <!-- Vue.js -->
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+    <script>
+      (function(){
+        var container = document.getElementById('timeline-container');
+        if(!container) return;
+        var img = function(name){
+          return '<img src="../public/images/'+name+'" alt="'+name+' icon" class="icon-img">';
+        };
+        var svgHeart = '<svg class="icon-svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z"/></svg>';
 
+        var events = [
+          { time: '12:30 pm', name: 'Guest Arrival', icon: img('Arrivals.png') },
+          { time: '1:00 pm',  name: 'The Ceremony',  icon: svgHeart },
+          { time: '1:30 pm',  name: 'Drinks Reception', icon: img('drinks reception.png') },
+          { time: '3:00 pm',  name: 'Wedding Breakfast', icon: img('Wedding Breakfast.png') },
+          { time: '5:15 pm',  name: 'Speeches', icon: img('speeches.png') },
+          { time: '7:00 pm',  name: 'Evening Reception', icon: img('Evening Reception.png') },
+          { time: '7:30 pm',  name: 'First Dance', icon: img('first dance.png') },
+          { time: '8:15 pm',  name: 'Hog Roast Buffet', icon: img('Hog Roast.png') },
+          { time: '11:30 pm', name: 'Last Orders', icon: img('Closing Time.png') },
+          { time: '12:00 am', name: 'Farewells', icon: img('farewells.png') }
+        ];
+
+        events.forEach(function(ev){
+          var wrap = document.createElement('div');
+          wrap.className = 'timeline-item';
+          wrap.innerHTML = ''
+            + '<div class="timeline-line"></div>'
+            + '<div class="timeline-icon">'+ ev.icon +'</div>'
+            + '<div class="timeline-content">'
+            +   '<p class="timeline-time">'+ ev.time +'</p>'
+            +   '<p class="timeline-event">'+ ev.name +'</p>';
+          container.appendChild(wrap);
+        });
+      })();
+    </script>
     <!-- Main JS (combined logic with parseGvizDate) -->
     <script src="../js/main.js"></script>
+
+
     <script src="../js/nav.js"></script>
     <script src="../js/vh-fix.js"></script>
   </div>
